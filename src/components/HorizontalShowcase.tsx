@@ -77,7 +77,8 @@ export default function HorizontalShowcase({ products }: { products: Product[] }
                     src={product.image}
                     alt={product.name}
                     fill
-                    sizes="300px"
+                    sizes="(max-width: 640px) 240px, 300px"
+                    quality={75}
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>

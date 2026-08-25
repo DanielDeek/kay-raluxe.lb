@@ -8,8 +8,8 @@
   --color-champagne: #c8a97e;
   --color-white: #ffffff;
 
-  --font-display: "Cormorant Garamond", "Playfair Display", Georgia, serif;
-  --font-sans: "Manrope", "Helvetica Neue", Arial, sans-serif;
+  --font-display-fallback: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-sans-fallback: "Manrope", "Helvetica Neue", Arial, sans-serif;
 }
 
 @theme inline {
@@ -18,8 +18,8 @@
   --color-charcoal: var(--color-charcoal);
   --color-mutedBrown: var(--color-mutedBrown);
   --color-champagne: var(--color-champagne);
-  --font-display: var(--font-display);
-  --font-sans: var(--font-sans);
+  --font-display: var(--font-display-next), var(--font-display-fallback);
+  --font-sans: var(--font-sans-next), var(--font-sans-fallback);
 }
 
 * {
@@ -60,10 +60,10 @@ body {
 }
 
 .font-display {
-  font-family: var(--font-display);
+  font-family: var(--font-display-next), var(--font-display-fallback);
 }
 .font-sans {
-  font-family: var(--font-sans);
+  font-family: var(--font-sans-next), var(--font-sans-fallback);
 }
 
 .container {
@@ -71,6 +71,16 @@ body {
   max-width: 1440px;
   margin-inline: auto;
   padding-inline: 1.25rem;
+}
+
+/* Keep the compact search panel centered beneath its trigger on small screens. */
+@media (max-width: 639px) {
+  .global-search-panel {
+    left: 50%;
+    right: auto;
+    width: min(20rem, calc(100vw - 1.5rem));
+    margin-left: calc(-1 * min(10rem, (100vw - 1.5rem) / 2));
+  }
 }
 
 .homepage-sections {

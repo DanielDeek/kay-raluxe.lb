@@ -1,7 +1,6 @@
 ﻿"use client";
 
-import { useMemo, useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { PackageSearch } from "lucide-react";
 import ProductGrid from "@/components/ProductGrid";
@@ -24,21 +23,23 @@ const DEFAULT_FILTERS: Filters = {
   onlySale: false,
 };
 
-export default function ShopClient() {
-  const searchParams = useSearchParams();
-  const [filters, setFilters] = useState<Filters>(DEFAULT_FILTERS);
+export default function ShopClient({
+  initialSearch = "",
+  initialFilter,
+  initialCategory,
+}: {
+  initialSearch?: string;
+  initialFilter?: string;
+  initialCategory?: string;
+}) {
+  const [filters, setFilters] = useState<Filters>(() => ({
+    ...DEFAULT_FILTERS,
+    search: initialSearch,
+    categories: initialCategory ? [initialCategory] : [],
+    onlyNew: initialFilter === "new",
+    onlySale: initialFilter === "sale",
+  }));
   const [view, setView] = useState<"grid" | "list">("grid");
-
-  useEffect(() => {
-    const param = searchParams.get("filter");
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- syncing initial filter state from URL query params
-    if (param === "new") setFilters((f) => ({ ...f, onlyNew: true }));
-    if (param === "sale") setFilters((f) => ({ ...f, onlySale: true }));
-    const category = searchParams.get("category");
-    if (category) setFilters((f) => ({ ...f, categories: [category] }));
-    const search = searchParams.get("search");
-    if (search) setFilters((f) => ({ ...f, search }));
-  }, [searchParams]);
 
   const filtered = useMemo(() => {
     let list = [...products];

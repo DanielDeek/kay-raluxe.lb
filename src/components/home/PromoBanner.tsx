@@ -9,10 +9,11 @@ export default function PromoBanner() {
       <div className="container">
         <div data-gsap-reveal className="relative min-h-[300px] overflow-hidden bg-mutedBrown sm:min-h-[360px]">
           <Image
-            src={editorialImage("kr-seasonal-banner", 1800, 900, 12)}
+            src={editorialImage("kr-seasonal-banner", 1400, 700, 12)}
             alt="Kay Reluxe seasonal collection campaign"
             fill
             sizes="(max-width: 767px) 100vw, 90vw"
+            quality={75}
             className="object-cover object-[center_38%]"
           />
           <div className="absolute inset-0 bg-charcoal/45" />

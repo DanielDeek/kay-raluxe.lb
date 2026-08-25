@@ -28,7 +28,7 @@ export default function ImageGallery({ images, name }: { images: string[]; name:
                 active === i ? "border-charcoal" : "border-transparent opacity-70 hover:opacity-100"
               )}
             >
-              <Image src={img} alt="" fill className="object-cover" sizes="80px" />
+              <Image src={img} alt="" fill className="object-cover" sizes="80px" quality={70} />
             </button>
           ))}
         </div>
@@ -53,7 +53,8 @@ export default function ImageGallery({ images, name }: { images: string[]; name:
                   alt={`${name} — view ${active + 1}`}
                   fill
                   priority
-                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  sizes="(max-width: 1023px) 100vw, 50vw"
+                  quality={75}
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </motion.div>
@@ -91,7 +92,7 @@ export default function ImageGallery({ images, name }: { images: string[]; name:
               <ChevronLeft className="h-9 w-9" />
             </button>
             <div className="relative h-[75vh] w-[90vw] sm:w-[70vw]">
-              <Image src={images[active]} alt={`${name} — view ${active + 1}`} fill className="object-contain" sizes="90vw" />
+              <Image src={images[active]} alt={`${name} — view ${active + 1}`} fill className="object-contain" sizes="90vw" quality={75} />
             </div>
             <button
               onClick={next}

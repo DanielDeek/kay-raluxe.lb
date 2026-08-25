@@ -39,6 +39,7 @@ export default function AboutPage() {
             fill
             priority
             sizes="100vw"
+            quality={75}
             className="object-cover"
           />
         </Reveal>
@@ -71,6 +72,7 @@ export default function AboutPage() {
               alt="Kay Reluxe styling detail"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
+              quality={75}
               className="object-cover"
             />
           </Reveal>
@@ -105,6 +107,7 @@ export default function AboutPage() {
               alt="Woman wearing Kay Reluxe"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
+              quality={75}
               className="object-cover"
             />
           </Reveal>

@@ -1,7 +1,5 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import Reveal from "@/components/Reveal";
 
 interface SectionHeadingProps {
   eyebrow?: string;
@@ -21,11 +19,8 @@ export default function SectionHeading({
   className,
 }: SectionHeadingProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, margin: "-10% 0px" }}
-      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+    <Reveal
+      y={0}
       className={cn(align === "center" ? "text-center" : "text-left", className)}
     >
       {eyebrow && (
@@ -57,6 +52,6 @@ export default function SectionHeading({
           {description}
         </p>
       )}
-    </motion.div>
+    </Reveal>
   );
 }

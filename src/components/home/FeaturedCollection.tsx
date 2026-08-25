@@ -10,10 +10,11 @@ export default function FeaturedCollection() {
         <div className="grid overflow-hidden md:grid-cols-[1.08fr_0.92fr]">
           <div data-gsap-reveal className="relative min-h-[430px] md:min-h-[560px]">
             <Image
-              src={editorialImage("kr-featured-collection", 1500, 1800, 7)}
+              src={editorialImage("kr-featured-collection", 1200, 1440, 7)}
               alt="Editorial portrait from the Kay Reluxe evening edit"
               fill
               sizes="(max-width: 767px) 100vw, 54vw"
+              quality={75}
               className="object-cover object-[center_28%]"
             />
           </div>

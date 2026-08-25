@@ -1,10 +1,8 @@
-"use client";
-
 import Image from "next/image";
-import { motion } from "framer-motion";
 import InstagramIcon from "@/components/icons/InstagramIcon";
 import { INSTAGRAM_URL, INSTAGRAM_HANDLE } from "@/lib/config";
 import { products } from "@/lib/data/products";
+import Reveal from "@/components/Reveal";
 
 const tiles = products.slice(0, 6).map((p) => p.image);
 
@@ -26,29 +24,32 @@ export default function InstagramGallery() {
         </div>
         <div data-gsap-reveal className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 lg:grid-cols-6">
           {tiles.map((src, i) => (
-            <motion.a
+            <Reveal
               key={src + i}
-              href={INSTAGRAM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, scale: 0.94 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="group relative aspect-square overflow-hidden bg-beige"
-              aria-label={`View Kay Reluxe look ${i + 1} on Instagram`}
+              delay={i * 0.05}
+              y={0}
+              className="relative aspect-square overflow-hidden bg-beige"
             >
-              <Image
-                src={src}
-                alt={`Kay Reluxe fashion look ${i + 1}`}
-                fill
-                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 flex items-center justify-center bg-charcoal/0 transition-colors duration-300 group-hover:bg-charcoal/40">
-                <InstagramIcon className="h-5 w-5 text-ivory opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              </div>
-            </motion.a>
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`View Kay Reluxe look ${i + 1} on Instagram`}
+                className="group absolute inset-0 block"
+              >
+                <Image
+                  src={src}
+                  alt={`Kay Reluxe fashion look ${i + 1}`}
+                  fill
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
+                  quality={70}
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 flex items-center justify-center bg-charcoal/0 transition-colors duration-300 group-hover:bg-charcoal/40">
+                  <InstagramIcon className="h-5 w-5 text-ivory opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                </div>
+              </a>
+            </Reveal>
           ))}
         </div>
         <a

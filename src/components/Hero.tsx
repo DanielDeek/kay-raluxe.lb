@@ -23,6 +23,7 @@ export default function Hero() {
           fill
           priority
           sizes="100vw"
+          quality={80}
           className="object-cover object-[58%_24%] sm:object-[center_24%]"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-charcoal/60 via-charcoal/10 to-charcoal/20" />

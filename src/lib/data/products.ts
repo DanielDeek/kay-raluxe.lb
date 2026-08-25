@@ -31,7 +31,7 @@ const PRODUCT_IMAGE_INDEX: Record<string, number> = {
   thea: 13,
 };
 
-const img = (seed: string, w = 900, h = 1150) => {
+const img = (seed: string, w = 700, h = 875) => {
   const match = seed.match(/^kr-([a-z]+)-(\d+)$/);
   const productKey = match?.[1] ?? seed;
   const view = match ? Number(match[2]) - 1 : 0;

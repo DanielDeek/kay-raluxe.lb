@@ -1,7 +1,7 @@
 import { Collection } from "@/types";
 import { editorialImage } from "./images";
 
-const img = (seed: string, w = 1000, h = 1250) => editorialImage(seed, w, h);
+const img = (seed: string, w = 700, h = 875) => editorialImage(seed, w, h);
 
 export const collections: Collection[] = [
   {

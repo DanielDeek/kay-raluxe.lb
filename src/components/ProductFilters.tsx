@@ -65,14 +65,14 @@ export default function ProductFilters({ filters, onChange, resultCount, view, o
   const FilterBody = (
     <div className="grid gap-8 lg:grid-cols-3 lg:gap-x-10">
       <div>
-        <h4 className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-charcoal">Collection</h4>
+        <h2 className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-charcoal">Collection</h2>
         <div className="flex flex-wrap gap-2">
           {([["all", "All pieces"], ["new-arrivals", "New arrivals"], ["best-sellers", "Best sellers"], ["sale", "Sale"]] as const).map(([value, label]) => <button key={value} onClick={() => onChange({ ...filters, collection: value })} className={cn("rounded-full border px-3.5 py-1.5 font-sans text-xs transition-colors", filters.collection === value ? "border-charcoal bg-charcoal text-ivory" : "border-charcoal/25 text-charcoal hover:border-charcoal")}>{label}</button>)}
         </div>
       </div>
 
       <div>
-        <h4 className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-charcoal">Price</h4>
+        <h2 className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-charcoal">Price</h2>
         <div className="flex flex-wrap gap-2">
           {([["all", "Any price"], ["under-50", "Under $50"], ["50-80", "$50–$80"], ["over-80", "Over $80"]] as const).map(([value, label]) => (
             <button key={value} onClick={() => onChange({ ...filters, price: value })} className={cn("rounded-full border px-3.5 py-1.5 font-sans text-xs transition-colors", filters.price === value ? "border-charcoal bg-charcoal text-ivory" : "border-charcoal/25 text-charcoal hover:border-charcoal")}>{label}</button>
@@ -81,7 +81,7 @@ export default function ProductFilters({ filters, onChange, resultCount, view, o
       </div>
 
       <div>
-        <h4 className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-charcoal">Category</h4>
+        <h2 className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-charcoal">Category</h2>
         <div className="flex flex-wrap gap-2">
           {ALL_CATEGORIES.map((cat) => (
             <button
@@ -101,7 +101,7 @@ export default function ProductFilters({ filters, onChange, resultCount, view, o
       </div>
 
       <div>
-        <h4 className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-charcoal">Size</h4>
+        <h2 className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-charcoal">Size</h2>
         <div className="flex flex-wrap gap-2">
           {ALL_SIZES.map((size) => (
             <button
@@ -121,7 +121,7 @@ export default function ProductFilters({ filters, onChange, resultCount, view, o
       </div>
 
       <div>
-        <h4 className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-charcoal">Color</h4>
+        <h2 className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-charcoal">Color</h2>
         <div className="flex flex-wrap gap-3">
           {ALL_COLORS.map((color) => (
             <button
@@ -140,7 +140,7 @@ export default function ProductFilters({ filters, onChange, resultCount, view, o
       </div>
 
       <div>
-        <h4 className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-charcoal">Show only</h4>
+        <h2 className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-charcoal">Show only</h2>
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => onChange({ ...filters, onlyNew: !filters.onlyNew })}

@@ -22,8 +22,8 @@ const EDITORIAL_PHOTOS = [
   "https://images.unsplash.com/photo-1543076447-215ad9ba6923",
 ];
 
-export function editorialImage(seed: string, width = 1200, height = 1500, preferredIndex?: number) {
+export function editorialImage(seed: string, width = 1000, height = 1250, preferredIndex?: number) {
   const hash = [...seed].reduce((total, character) => total + character.charCodeAt(0), 0);
   const source = EDITORIAL_PHOTOS[(preferredIndex ?? hash) % EDITORIAL_PHOTOS.length];
-  return `${source}?auto=format&fit=crop&w=${width}&h=${height}&q=85`;
+  return `${source}?auto=format&fit=crop&w=${width}&h=${height}&q=75`;
 }

@@ -6,7 +6,15 @@ import { motion } from "framer-motion";
 import { Product } from "@/types";
 import { displayPrice, formatPrice } from "@/lib/utils";
 
-export default function ProductCard({ product, priority = false }: { product: Product; priority?: boolean }) {
+export default function ProductCard({
+  product,
+  priority = false,
+  imageSizes = "(max-width: 1023px) 50vw, (max-width: 1279px) 33vw, 25vw",
+}: {
+  product: Product;
+  priority?: boolean;
+  imageSizes?: string;
+}) {
   const { current, original } = displayPrice(product);
 
   return (
@@ -24,7 +32,8 @@ export default function ProductCard({ product, priority = false }: { product: Pr
             alt={product.name}
             fill
             priority={priority}
-            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            sizes={imageSizes}
+            quality={75}
             className="object-cover transition-opacity duration-500 group-hover:opacity-0"
           />
           <Image
@@ -32,7 +41,8 @@ export default function ProductCard({ product, priority = false }: { product: Pr
             alt=""
             aria-hidden="true"
             fill
-            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            sizes={imageSizes}
+            quality={75}
             className="object-cover opacity-0 transition-transform duration-700 ease-out group-hover:scale-105 group-hover:opacity-100"
           />
 

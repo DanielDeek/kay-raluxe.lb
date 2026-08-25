@@ -19,7 +19,11 @@ export default function CategorySection() {
         />
         <div data-gsap-reveal className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:mt-10 lg:grid-cols-6 lg:gap-4">
           {categories.map((collection) => (
-            <CollectionCard key={collection.id} collection={collection} />
+            <CollectionCard
+              key={collection.id}
+              collection={collection}
+              imageSizes="(max-width: 640px) 50vw, (max-width: 1023px) 33vw, 16vw"
+            />
           ))}
         </div>
       </div>

@@ -22,7 +22,12 @@ export default function CollectionsPage() {
 
       <section className="container grid grid-cols-1 gap-4 py-16 sm:grid-cols-2 md:py-20 lg:grid-cols-3 lg:py-24">
         {collections.map((collection) => (
-          <CollectionCard key={collection.id} collection={collection} />
+          <CollectionCard
+            key={collection.id}
+            collection={collection}
+            imageSizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
+            headingLevel="h2"
+          />
         ))}
       </section>
     </div>

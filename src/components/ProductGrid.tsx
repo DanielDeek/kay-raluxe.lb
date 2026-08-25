@@ -20,7 +20,12 @@ export default function ProductGrid({ products, view = "grid", priorityFirst = f
       )}
     >
       {products.map((product, i) => (
-        <ProductCard key={product.id} product={product} priority={priorityFirst && i === 0} />
+        <ProductCard
+          key={product.id}
+          product={product}
+          priority={priorityFirst && i === 0}
+          imageSizes={view === "grid" ? "(max-width: 1023px) 50vw, (max-width: 1279px) 33vw, 25vw" : "(max-width: 640px) 100vw, 50vw"}
+        />
       ))}
     </div>
   );

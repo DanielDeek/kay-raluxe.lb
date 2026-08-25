@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import type { Metadata } from "next";
 import ShopClient from "./ShopClient";
 
@@ -7,10 +6,18 @@ export const metadata: Metadata = {
   description: "Browse the full Kay Reluxe collection — dresses, tops, sets, bottoms and more.",
 };
 
-export default function ShopPage() {
+export default async function ShopPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ search?: string; filter?: string; category?: string }>;
+}) {
+  const params = await searchParams;
+
   return (
-    <Suspense fallback={<div className="pt-32 sm:pt-40" />}>
-      <ShopClient />
-    </Suspense>
+    <ShopClient
+      initialSearch={params.search}
+      initialFilter={params.filter}
+      initialCategory={params.category}
+    />
   );
 }

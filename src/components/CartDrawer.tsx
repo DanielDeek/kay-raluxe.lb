@@ -60,7 +60,7 @@ export default function CartDrawer() {
                     {items.map((item) => (
                       <article key={`${item.productId}-${item.size}-${item.color}`} className="grid grid-cols-[76px_1fr] gap-4 py-5">
                         <Link href={`/product/${item.slug}`} onClick={closeBag} className="relative aspect-[3/4] overflow-hidden bg-beige">
-                          <Image src={item.image} alt={item.name} fill sizes="76px" unoptimized className="object-cover" />
+                          <Image src={item.image} alt={item.name} fill sizes="76px" quality={70} className="object-cover" />
                         </Link>
                         <div className="min-w-0">
                           <div className="flex items-start justify-between gap-3">

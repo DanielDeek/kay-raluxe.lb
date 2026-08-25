@@ -30,10 +30,21 @@ export default function Header() {
   const isHome = pathname === "/";
 
   useEffect(() => {
+    let frame = 0;
     const onScroll = () => setScrolled(window.scrollY > 40);
+    const handleScroll = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(() => {
+        onScroll();
+        frame = 0;
+      });
+    };
     onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
   }, []);
 
   useEffect(() => {
@@ -128,7 +139,7 @@ export default function Header() {
                     exit={{ opacity: 0, y: -6, scale: 0.98 }}
                     transition={{ duration: 0.18 }}
                     className={cn(
-                      "absolute right-0 top-[calc(100%+0.5rem)] z-50 w-[min(20rem,calc(100vw-2rem))] border p-3 shadow-lg",
+                      "global-search-panel absolute right-0 top-[calc(100%+0.5rem)] z-50 w-[min(20rem,calc(100vw-2rem))] border p-3 shadow-lg",
                       transparent ? "border-ivory/20 bg-charcoal/95" : "border-charcoal/10 bg-ivory"
                     )}
                   >

@@ -28,10 +28,11 @@ export default function ShopTheLook() {
         <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
           <div data-gsap-reveal className="relative aspect-[4/5] overflow-hidden bg-beige sm:aspect-[5/4] lg:aspect-[4/5]">
             <Image
-              src={editorialImage("kr-shop-the-look", 1400, 1700, 3)}
+              src={editorialImage("kr-shop-the-look", 1200, 1500, 3)}
               alt="Model wearing a layered Kay Reluxe outfit"
               fill
               sizes="(max-width: 1023px) 100vw, 55vw"
+              quality={75}
               className="object-cover object-[center_32%]"
             />
           </div>
@@ -45,7 +46,7 @@ export default function ShopTheLook() {
                 return (
                   <Link key={product.id} href={`/shop/${product.slug}`} className="group flex items-center gap-4 border-b border-charcoal/15 py-4">
                     <div className="relative h-20 w-16 shrink-0 overflow-hidden bg-beige">
-                      <Image src={product.image} alt={product.name} fill sizes="64px" className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                      <Image src={product.image} alt={product.name} fill sizes="64px" quality={70} className="object-cover transition-transform duration-500 group-hover:scale-105" />
                     </div>
                     <div className="min-w-0 flex-1">
                       <h3 className="font-sans text-sm text-charcoal">{product.name}</h3>
