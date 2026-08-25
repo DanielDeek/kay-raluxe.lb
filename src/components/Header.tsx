@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -90,7 +90,7 @@ export default function Header() {
               transparent ? "text-ivory" : "text-charcoal"
             )}
           >
-            KAY RELUXE
+            KAY RALUXE
           </Link>
 
           <nav className="hidden items-center gap-8 lg:flex">

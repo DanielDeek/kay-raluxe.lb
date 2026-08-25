@@ -29,7 +29,7 @@ export default function ColorSelector({ colors, selected, onSelect, showError }:
             title={color.name}
             onClick={() => onSelect(color.name)}
             className={cn(
-              "flex h-10 w-10 items-center justify-center rounded-full border-2 transition-all",
+              "flex h-11 w-11 items-center justify-center rounded-full border-2 transition-all",
               selected === color.name ? "border-charcoal scale-110" : "border-transparent hover:scale-105"
             )}
           >

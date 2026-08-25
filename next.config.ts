@@ -13,6 +13,9 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [{ source: "/collections/matching-sets", destination: "/collections/sets", permanent: true }];
+  },
 };
 
 export default nextConfig;

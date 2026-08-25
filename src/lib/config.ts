@@ -1,6 +1,6 @@
 /**
  * Store-wide editable configuration.
- * Store-wide verified Kay Reluxe details.
+ * Store-wide verified Kay Raluxe details.
  */
 
 // Digits only, international format. Example: 9613123456
@@ -11,7 +11,7 @@ export const INSTAGRAM_HANDLE = "@kay.raluxe.lb";
 export const CONTACT_PHONE_DISPLAY = "+961 3 954 746";
 export const CONTACT_EMAIL = "";
 export const BUSINESS_HOURS = "Message us on WhatsApp for current availability.";
-export const ADDRESS_PLACEHOLDER = "Saida Highway, facing Spot Mall";
+export const STORE_ADDRESS = "Saida Highway, facing Spot Mall";
 export const DELIVERY_NOTE = "Delivery all over Lebanon | WhatsApp";
 
 export const DELIVERY_POLICY = {
@@ -22,10 +22,12 @@ export const DELIVERY_POLICY = {
   returns: "Contact us on WhatsApp for return questions and order support.",
   damaged: "Message us on WhatsApp as soon as possible with your order details and photos.",
   modifications: "Message us on WhatsApp as soon as possible; changes depend on order status.",
-  support: "Contact Kay Reluxe on WhatsApp for order support.",
+  support: "Contact Kay Raluxe on WhatsApp for order support.",
 };
 
-export const STORE_NAME = "Kay Reluxe";
+export const STORE_NAME = "Kay Raluxe";
 export const STORE_TAGLINE = "Trendy Pieces, Infinite Style!";
 export const CURRENCY = "$";
-export const SITE_URL = "https://kayreluxe.example.com";
+export const CURRENCY_CODE = "USD";
+export const SITE_URL = "https://kay-raluxe.netlify.app";
+export const SOCIAL_IMAGE_URL = "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1200&h=630&q=80";

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Product } from "@/types";
 import { displayPrice, formatPrice } from "@/lib/utils";
@@ -15,6 +16,7 @@ export default function ProductCard({
   priority?: boolean;
   imageSizes?: string;
 }) {
+  const [hoverImageRequested, setHoverImageRequested] = useState(false);
   const { current, original } = displayPrice(product);
 
   return (
@@ -23,6 +25,8 @@ export default function ProductCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-8% 0px" }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      onMouseEnter={() => setHoverImageRequested(true)}
+      onFocusCapture={() => setHoverImageRequested(true)}
       className="group relative"
     >
       <div className="relative aspect-[4/5] overflow-hidden bg-beige">
@@ -36,15 +40,17 @@ export default function ProductCard({
             quality={75}
             className="object-cover transition-opacity duration-500 group-hover:opacity-0"
           />
-          <Image
-            src={product.hoverImage}
-            alt=""
-            aria-hidden="true"
-            fill
-            sizes={imageSizes}
-            quality={75}
-            className="object-cover opacity-0 transition-transform duration-700 ease-out group-hover:scale-105 group-hover:opacity-100"
-          />
+          {hoverImageRequested && (
+            <Image
+              src={product.hoverImage}
+              alt=""
+              aria-hidden="true"
+              fill
+              sizes={imageSizes}
+              quality={75}
+              className="object-cover opacity-0 transition-transform duration-700 ease-out group-hover:scale-105 group-hover:opacity-100"
+            />
+          )}
 
           <div className="pointer-events-none absolute left-3 top-3 flex flex-col gap-1.5">
             {product.isNew && (

@@ -62,22 +62,6 @@ export const collections: Collection[] = [
   },
   {
     id: "c8",
-    slug: "matching-sets",
-    title: "Matching Sets",
-    subtitle: "The complete look, considered.",
-    image: img("kr-col-matching-sets"),
-    category: "sets",
-  },
-  {
-    id: "c9",
-    slug: "accessories",
-    title: "Accessories",
-    subtitle: "The finishing details.",
-    image: img("kr-col-accessories"),
-    category: "accessories",
-  },
-  {
-    id: "c10",
     slug: "best-sellers",
     title: "Best Sellers",
     subtitle: "Pieces customers return to.",

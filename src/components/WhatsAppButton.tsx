@@ -13,7 +13,7 @@ interface WhatsAppButtonProps {
 }
 
 export default function WhatsAppButton({
-  message = "Hello Kay Reluxe, I have a question about your collection.",
+  message = "Hello Kay Raluxe, I have a question about your collection.",
   label = "Order on WhatsApp",
   className,
   variant = "solid",

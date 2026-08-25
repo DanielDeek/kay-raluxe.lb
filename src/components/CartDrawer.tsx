@@ -2,16 +2,69 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Minus, Plus, ShoppingBag, Trash2, X } from "lucide-react";
-import { useCart } from "@/context/CartContext";
+import { MAX_CART_QUANTITY, useCart } from "@/context/CartContext";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { buildOrderMessage } from "@/lib/whatsapp";
-import { formatPrice } from "@/lib/utils";
+import { displayPrice, formatPrice } from "@/lib/utils";
+import { products } from "@/lib/data/products";
 
 export default function CartDrawer() {
-  const { items, subtotal, isOpen, closeBag, removeItem, updateQuantity } = useCart();
-  const message = buildOrderMessage({ items });
+  const { items, isOpen, closeBag, removeItem, updateQuantity } = useCart();
+  const drawerRef = useRef<HTMLElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const restoreFocusRef = useRef<HTMLElement | null>(null);
+  const orderableItems = items.flatMap((item) => {
+    const product = products.find((candidate) => candidate.id === item.productId && candidate.slug === item.slug);
+    if (!product || !product.inStock || !product.sizes.includes(item.size) || !product.colors.some((color) => color.name === item.color)) return [];
+    return [{ ...item, price: displayPrice(product).current }];
+  });
+  const unavailableCount = items.length - orderableItems.length;
+  const orderSubtotal = orderableItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  const message = buildOrderMessage({ items: orderableItems });
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    restoreFocusRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const focusFrame = window.requestAnimationFrame(() => closeRef.current?.focus());
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeBag();
+        return;
+      }
+      if (event.key !== "Tab" || !drawerRef.current) return;
+
+      const focusable = Array.from(
+        drawerRef.current.querySelectorAll<HTMLElement>(
+          'button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+      );
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.cancelAnimationFrame(focusFrame);
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = previousOverflow;
+      restoreFocusRef.current?.focus();
+      restoreFocusRef.current = null;
+    };
+  }, [closeBag, isOpen]);
 
   return (
     <AnimatePresence>
@@ -27,6 +80,7 @@ export default function CartDrawer() {
             exit={{ opacity: 0 }}
           />
           <motion.aside
+            ref={drawerRef}
             aria-label="Shopping bag"
             role="dialog"
             aria-modal="true"
@@ -41,7 +95,7 @@ export default function CartDrawer() {
                 <span className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-mutedBrown">Your selection</span>
                 <h2 className="mt-1 font-display text-3xl text-charcoal">Shopping bag</h2>
               </div>
-              <button type="button" onClick={closeBag} aria-label="Close shopping bag" className="flex h-10 w-10 items-center justify-center text-charcoal/60 transition-colors hover:text-charcoal">
+              <button ref={closeRef} type="button" onClick={closeBag} aria-label="Close shopping bag" className="flex h-11 w-11 items-center justify-center text-charcoal/60 transition-colors hover:text-charcoal">
                 <X className="h-5 w-5" />
               </button>
             </div>
@@ -68,13 +122,13 @@ export default function CartDrawer() {
                               <Link href={`/shop/${item.slug}`} onClick={closeBag} className="font-display text-xl text-charcoal hover:text-mutedBrown">{item.name}</Link>
                               <p className="mt-1 font-sans text-[10px] uppercase tracking-[0.12em] text-charcoal/50">{item.color} · {item.size}</p>
                             </div>
-                            <button type="button" onClick={() => removeItem(item.productId, item.size, item.color)} aria-label={`Remove ${item.name}`} className="p-1 text-charcoal/40 hover:text-charcoal"><Trash2 className="h-3.5 w-3.5" /></button>
+                            <button type="button" onClick={() => removeItem(item.productId, item.size, item.color)} aria-label={`Remove ${item.name}`} className="flex h-11 w-11 items-center justify-center text-charcoal/40 hover:text-charcoal"><Trash2 className="h-3.5 w-3.5" /></button>
                           </div>
                           <div className="mt-5 flex items-center justify-between gap-3">
                             <div className="flex items-center border border-charcoal/15">
-                              <button type="button" onClick={() => updateQuantity(item.productId, item.size, item.color, item.quantity - 1)} aria-label={`Decrease ${item.name} quantity`} className="flex h-8 w-8 items-center justify-center text-charcoal/60 hover:text-charcoal"><Minus className="h-3 w-3" /></button>
+                              <button type="button" disabled={item.quantity <= 1} onClick={() => updateQuantity(item.productId, item.size, item.color, item.quantity - 1)} aria-label={`Decrease ${item.name} quantity`} className="flex h-11 w-11 items-center justify-center text-charcoal/60 hover:text-charcoal disabled:opacity-30"><Minus className="h-3 w-3" /></button>
                               <span className="w-7 text-center font-sans text-xs">{item.quantity}</span>
-                              <button type="button" onClick={() => updateQuantity(item.productId, item.size, item.color, item.quantity + 1)} aria-label={`Increase ${item.name} quantity`} className="flex h-8 w-8 items-center justify-center text-charcoal/60 hover:text-charcoal"><Plus className="h-3 w-3" /></button>
+                              <button type="button" disabled={item.quantity >= MAX_CART_QUANTITY} onClick={() => updateQuantity(item.productId, item.size, item.color, item.quantity + 1)} aria-label={`Increase ${item.name} quantity`} className="flex h-11 w-11 items-center justify-center text-charcoal/60 hover:text-charcoal disabled:opacity-30"><Plus className="h-3 w-3" /></button>
                             </div>
                             <span className="font-sans text-sm font-semibold text-charcoal">{formatPrice(item.price * item.quantity)}</span>
                           </div>
@@ -84,12 +138,17 @@ export default function CartDrawer() {
                   </div>
                 </div>
                 <div className="border-t border-charcoal/10 px-5 py-5 sm:px-7 sm:py-6">
+                  {unavailableCount > 0 && (
+                    <p className="mb-4 border border-champagne/50 bg-champagne/10 px-3 py-3 font-sans text-xs leading-relaxed text-charcoal/70" role="alert">
+                      {unavailableCount === 1 ? "One item" : `${unavailableCount} items`} need{unavailableCount === 1 ? "s" : ""} to be removed or updated before ordering.
+                    </p>
+                  )}
                   <div className="flex items-center justify-between font-sans text-sm">
                     <span className="text-charcoal/60">Subtotal</span>
-                    <span className="font-semibold text-charcoal">{formatPrice(subtotal)}</span>
+                    <span className="font-semibold text-charcoal">{formatPrice(orderSubtotal)}</span>
                   </div>
                   <p className="mt-2 font-sans text-xs leading-relaxed text-charcoal/50">Delivery and final details will be confirmed with you on WhatsApp.</p>
-                  <WhatsAppButton message={message} label="Order on WhatsApp" className="mt-5 w-full" />
+                  <WhatsAppButton message={message} label="Order on WhatsApp" disabled={orderableItems.length === 0 || unavailableCount > 0} className="mt-5 w-full" />
                 </div>
               </>
             )}

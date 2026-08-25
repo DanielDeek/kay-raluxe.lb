@@ -17,7 +17,7 @@ export interface Filters {
   onlySale: boolean;
 }
 
-export const ALL_CATEGORIES = ["dresses", "tops", "sets", "bottoms", "accessories", "summer"];
+export const ALL_CATEGORIES = ["dresses", "tops", "sets", "bottoms", "summer"];
 export const ALL_SIZES = ["XS", "S", "M", "L", "XL"];
 export const ALL_COLORS = [
   { name: "Charcoal", hex: "#171717" },
@@ -67,7 +67,7 @@ export default function ProductFilters({ filters, onChange, resultCount, view, o
       <div>
         <h2 className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-charcoal">Collection</h2>
         <div className="flex flex-wrap gap-2">
-          {([["all", "All pieces"], ["new-arrivals", "New arrivals"], ["best-sellers", "Best sellers"], ["sale", "Sale"]] as const).map(([value, label]) => <button key={value} onClick={() => onChange({ ...filters, collection: value })} className={cn("rounded-full border px-3.5 py-1.5 font-sans text-xs transition-colors", filters.collection === value ? "border-charcoal bg-charcoal text-ivory" : "border-charcoal/25 text-charcoal hover:border-charcoal")}>{label}</button>)}
+          {([["all", "All pieces"], ["new-arrivals", "New arrivals"], ["best-sellers", "Best sellers"], ["sale", "Sale"]] as const).map(([value, label]) => <button type="button" key={value} onClick={() => onChange({ ...filters, collection: value })} className={cn("min-h-11 rounded-full border px-3.5 py-1.5 font-sans text-xs transition-colors", filters.collection === value ? "border-charcoal bg-charcoal text-ivory" : "border-charcoal/25 text-charcoal hover:border-charcoal")}>{label}</button>)}
         </div>
       </div>
 
@@ -75,7 +75,7 @@ export default function ProductFilters({ filters, onChange, resultCount, view, o
         <h2 className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-charcoal">Price</h2>
         <div className="flex flex-wrap gap-2">
           {([["all", "Any price"], ["under-50", "Under $50"], ["50-80", "$50–$80"], ["over-80", "Over $80"]] as const).map(([value, label]) => (
-            <button key={value} onClick={() => onChange({ ...filters, price: value })} className={cn("rounded-full border px-3.5 py-1.5 font-sans text-xs transition-colors", filters.price === value ? "border-charcoal bg-charcoal text-ivory" : "border-charcoal/25 text-charcoal hover:border-charcoal")}>{label}</button>
+            <button type="button" key={value} onClick={() => onChange({ ...filters, price: value })} className={cn("min-h-11 rounded-full border px-3.5 py-1.5 font-sans text-xs transition-colors", filters.price === value ? "border-charcoal bg-charcoal text-ivory" : "border-charcoal/25 text-charcoal hover:border-charcoal")}>{label}</button>
           ))}
         </div>
       </div>
@@ -87,8 +87,9 @@ export default function ProductFilters({ filters, onChange, resultCount, view, o
             <button
               key={cat}
               onClick={() => onChange({ ...filters, categories: toggleValue(filters.categories, cat) })}
+              type="button"
               className={cn(
-                "rounded-full border px-3.5 py-1.5 font-sans text-xs capitalize transition-colors",
+                "min-h-11 rounded-full border px-3.5 py-1.5 font-sans text-xs capitalize transition-colors",
                 filters.categories.includes(cat)
                   ? "border-charcoal bg-charcoal text-ivory"
                   : "border-charcoal/25 text-charcoal hover:border-charcoal"
@@ -106,9 +107,10 @@ export default function ProductFilters({ filters, onChange, resultCount, view, o
           {ALL_SIZES.map((size) => (
             <button
               key={size}
+              type="button"
               onClick={() => onChange({ ...filters, sizes: toggleValue(filters.sizes, size) })}
               className={cn(
-                "flex h-9 w-9 items-center justify-center border font-sans text-xs transition-colors",
+                "flex h-11 w-11 items-center justify-center border font-sans text-xs transition-colors",
                 filters.sizes.includes(size)
                   ? "border-charcoal bg-charcoal text-ivory"
                   : "border-charcoal/25 text-charcoal hover:border-charcoal"
@@ -126,10 +128,13 @@ export default function ProductFilters({ filters, onChange, resultCount, view, o
           {ALL_COLORS.map((color) => (
             <button
               key={color.name}
+              type="button"
+              aria-label={`Filter by ${color.name}`}
+              aria-pressed={filters.colors.includes(color.name)}
               title={color.name}
               onClick={() => onChange({ ...filters, colors: toggleValue(filters.colors, color.name) })}
               className={cn(
-                "flex h-9 w-9 items-center justify-center rounded-full border-2 transition-all",
+                "flex h-11 w-11 items-center justify-center rounded-full border-2 transition-all",
                 filters.colors.includes(color.name) ? "border-charcoal scale-110" : "border-transparent"
               )}
             >
@@ -144,17 +149,19 @@ export default function ProductFilters({ filters, onChange, resultCount, view, o
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => onChange({ ...filters, onlyNew: !filters.onlyNew })}
+            type="button"
             className={cn(
-              "rounded-full border px-3.5 py-1.5 font-sans text-xs transition-colors",
+                "min-h-11 rounded-full border px-3.5 py-1.5 font-sans text-xs transition-colors",
               filters.onlyNew ? "border-charcoal bg-charcoal text-ivory" : "border-charcoal/25 text-charcoal"
             )}
           >
             New Arrivals
           </button>
           <button
+            type="button"
             onClick={() => onChange({ ...filters, onlySale: !filters.onlySale })}
             className={cn(
-              "rounded-full border px-3.5 py-1.5 font-sans text-xs transition-colors",
+              "min-h-11 rounded-full border px-3.5 py-1.5 font-sans text-xs transition-colors",
               filters.onlySale ? "border-charcoal bg-charcoal text-ivory" : "border-charcoal/25 text-charcoal"
             )}
           >
@@ -239,6 +246,7 @@ export default function ProductFilters({ filters, onChange, resultCount, view, o
             <div className="mt-8 flex flex-col gap-3 border-t border-charcoal/10 pt-5 sm:flex-row sm:items-center sm:justify-between">
               <p className="font-sans text-xs text-charcoal/55">Filters update the collection as you choose.</p>
               <button
+                type="button"
                 onClick={() => setDrawerOpen(false)}
                 className="inline-flex min-h-11 items-center justify-center bg-charcoal px-6 py-3 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-ivory transition-colors hover:bg-mutedBrown"
               >
@@ -274,6 +282,7 @@ function FilterMeta({
       </span>
       {activeChips.map((chip) => (
         <button
+          type="button"
           key={chip.label}
           onClick={chip.onRemove}
           className="flex items-center gap-1.5 rounded-full bg-beige px-3 py-1 font-sans text-xs capitalize text-charcoal"
@@ -283,7 +292,7 @@ function FilterMeta({
         </button>
       ))}
       {activeChips.length > 0 && (
-        <button onClick={onClearAll} className="font-sans text-xs text-mutedBrown underline underline-offset-2">
+        <button type="button" onClick={onClearAll} className="min-h-11 font-sans text-xs text-mutedBrown underline underline-offset-2">
           Clear all
         </button>
       )}

@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Phone, Clock, Truck, Mail, MapPin } from "lucide-react";
 import PageIntro from "@/components/PageIntro";
 import Reveal from "@/components/Reveal";
@@ -16,13 +16,14 @@ import {
   BUSINESS_HOURS,
   DELIVERY_NOTE,
   CONTACT_EMAIL,
-  ADDRESS_PLACEHOLDER,
+  STORE_ADDRESS,
   DELIVERY_POLICY,
 } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Get in touch with Kay Reluxe via WhatsApp, Instagram, or our contact form.",
+  alternates: { canonical: "/contact" },
+  description: "Get in touch with Kay Raluxe via WhatsApp, Instagram, or our contact form.",
 };
 
 const FAQ_ITEMS = [
@@ -60,7 +61,7 @@ export default function ContactPage() {
         title="We'd love to hear from you."
         description="For styling questions, delivery details, or help choosing your size, our fastest reply is on WhatsApp."
         image={editorialImage("kr-page-contact", 1100, 1000, 8)}
-        imageAlt="Kay Reluxe fashion detail"
+        imageAlt="Kay Raluxe fashion detail"
       />
 
       <section className="container grid grid-cols-1 gap-14 py-16 md:py-20 lg:grid-cols-2 lg:gap-20 lg:py-24">
@@ -75,7 +76,7 @@ export default function ContactPage() {
             )}
             <li className="flex items-start gap-3">
               <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-mutedBrown" />
-              <div><p className="font-sans text-sm font-medium text-charcoal">Address</p><p className="font-sans text-sm text-charcoal/60">{ADDRESS_PLACEHOLDER}</p></div>
+              <div><p className="font-sans text-sm font-medium text-charcoal">Address</p><p className="font-sans text-sm text-charcoal/60">{STORE_ADDRESS}</p></div>
             </li>
             <li className="flex items-start gap-3">
               <WhatsAppIcon className="mt-0.5 h-4 w-4 shrink-0 text-mutedBrown" />
@@ -139,7 +140,7 @@ export default function ContactPage() {
         <Reveal
           className="flex min-h-48 items-center justify-center border border-dashed border-charcoal/20 bg-beige/40 text-center"
         >
-          <div><MapPin className="mx-auto h-6 w-6 text-mutedBrown" /><p className="mt-3 font-sans text-sm text-charcoal/60">Saida Highway, facing Spot Mall</p></div>
+          <div><MapPin className="mx-auto h-6 w-6 text-mutedBrown" /><p className="mt-3 font-sans text-sm text-charcoal/60">{STORE_ADDRESS}</p></div>
         </Reveal>
       </section>
     </div>

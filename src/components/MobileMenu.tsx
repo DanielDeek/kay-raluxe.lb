@@ -1,6 +1,7 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import InstagramIcon from "@/components/icons/InstagramIcon";
@@ -14,10 +15,50 @@ interface MobileMenuProps {
 }
 
 export default function MobileMenu({ open, onClose, links }: MobileMenuProps) {
+  const menuRef = useRef<HTMLDivElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const restoreFocusRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!open) return;
+
+    restoreFocusRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const focusFrame = window.requestAnimationFrame(() => closeRef.current?.focus());
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+        return;
+      }
+      if (event.key !== "Tab" || !menuRef.current) return;
+      const focusable = Array.from(
+        menuRef.current.querySelectorAll<HTMLElement>('button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])')
+      );
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.cancelAnimationFrame(focusFrame);
+      document.removeEventListener("keydown", handleKeyDown);
+      restoreFocusRef.current?.focus();
+      restoreFocusRef.current = null;
+    };
+  }, [onClose, open]);
+
   return (
     <AnimatePresence>
       {open && (
         <motion.div
+          ref={menuRef}
           id="mobile-menu"
           className="fixed inset-0 z-[100] flex flex-col bg-charcoal text-ivory lg:hidden"
           initial={{ clipPath: "inset(0 0 100% 0)" }}
@@ -29,8 +70,8 @@ export default function MobileMenu({ open, onClose, links }: MobileMenuProps) {
           aria-label="Main menu"
         >
           <div className="container flex h-16 items-center justify-between sm:h-20">
-            <span className="font-display text-xl tracking-[0.18em]">KAY RELUXE</span>
-            <button onClick={onClose} aria-label="Close menu">
+            <span className="font-display text-xl tracking-[0.18em]">KAY RALUXE</span>
+            <button ref={closeRef} type="button" onClick={onClose} aria-label="Close menu" className="flex h-11 w-11 items-center justify-center">
               <X className="h-6 w-6" />
             </button>
           </div>

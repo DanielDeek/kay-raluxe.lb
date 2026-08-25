@@ -7,10 +7,13 @@ import EmptyState from "@/components/EmptyState";
 import { getCollectionBySlug, collections } from "@/lib/data/collections";
 import { products, getNewArrivals, getSaleProducts, getBestSellerProducts } from "@/lib/data/products";
 import { PackageSearch } from "lucide-react";
+import { createPageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
   return collections.map((c) => ({ slug: c.slug }));
 }
+
+export const dynamicParams = false;
 
 export async function generateMetadata({
   params,
@@ -20,7 +23,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const collection = getCollectionBySlug(slug);
   if (!collection) return {};
-  return { title: collection.title, description: collection.subtitle };
+  return createPageMetadata({ title: collection.title, description: collection.subtitle, path: `/collections/${collection.slug}`, image: collection.image });
 }
 
 export default async function CollectionDetailPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -38,10 +41,10 @@ export default async function CollectionDetailPage({ params }: { params: Promise
     <div className="pb-28">
       <section className="relative flex h-[45vh] min-h-[320px] w-full items-end overflow-hidden sm:h-[55vh]">
         <Image src={collection.image} alt={collection.title} fill preload sizes="100vw" quality={75} className="object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-ivory/55 via-ivory/10 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ivory/70 via-ivory/15 to-transparent" />
         <div className="container relative z-10 pb-12">
           <AnimatedText text={collection.title} as="h1" animateOnMount className="font-display text-4xl text-charcoal sm:text-6xl" />
-          <p className="mt-3 font-sans text-sm text-white drop-shadow-sm sm:text-base">{collection.subtitle}</p>
+          <p className="mt-3 font-sans text-sm text-charcoal/70 sm:text-base">{collection.subtitle}</p>
         </div>
       </section>
 

@@ -3,7 +3,6 @@ export type ProductCategory =
   | "tops"
   | "sets"
   | "bottoms"
-  | "accessories"
   | "summer"
   | "sale";
 

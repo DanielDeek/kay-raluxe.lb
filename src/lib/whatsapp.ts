@@ -24,7 +24,8 @@ export function buildOrderMessage({ items, customerName, address, deliveryArea, 
     lines.push("");
   });
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  lines.push(`Total: ${formatPrice(total)}`);
+  lines.push(`Subtotal: ${formatPrice(total)}`);
+  lines.push(`Final total: ${formatPrice(total)} (delivery fee confirmed on WhatsApp)`);
   lines.push("");
   lines.push(`Name: ${customerName || missing}`);
   lines.push(`Address: ${address || missing}`);

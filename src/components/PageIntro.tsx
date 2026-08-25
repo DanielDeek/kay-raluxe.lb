@@ -22,8 +22,8 @@ export default function PageIntro({ eyebrow, title, description, image, imageAlt
         data-gsap-parallax
         className="object-cover object-[center_32%]"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-ivory/70 via-ivory/25 to-transparent" />
-      <div className="absolute inset-0 bg-gradient-to-t from-ivory/55 via-transparent to-ivory/10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-ivory/85 via-ivory/35 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-ivory/65 via-transparent to-ivory/10" />
       <div className="container relative z-10 flex min-h-[440px] items-end pb-12 pt-32 sm:min-h-[520px] sm:pb-16 lg:pb-20">
         <div className="max-w-3xl text-charcoal">
           <span className="mb-4 block font-sans text-xs font-semibold uppercase tracking-[0.3em] text-mutedBrown">
@@ -37,7 +37,7 @@ export default function PageIntro({ eyebrow, title, description, image, imageAlt
             className="font-display text-5xl leading-[0.96] text-charcoal sm:text-7xl lg:text-8xl"
           />
           {description && (
-            <p className="mt-5 max-w-xl font-sans text-sm leading-relaxed text-white drop-shadow-sm sm:text-base">
+            <p className="mt-5 max-w-xl font-sans text-sm leading-relaxed text-charcoal/70 sm:text-base">
               {description}
             </p>
           )}

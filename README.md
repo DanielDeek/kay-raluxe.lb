@@ -1,6 +1,6 @@
-# Kay Reluxe — Fashion Boutique Website
+# Kay Raluxe — Fashion Boutique Website
 
-A premium, editorial, frontend-only fashion e-commerce website for **Kay Reluxe**, built with Next.js (App Router), TypeScript, and Tailwind CSS. Checkout happens entirely through WhatsApp — there is no backend, database, authentication, or payment gateway.
+A premium, editorial, frontend-only fashion e-commerce website for **Kay Raluxe**, built with Next.js (App Router), TypeScript, and Tailwind CSS. Checkout happens entirely through WhatsApp — there is no backend, database, authentication, or payment gateway.
 
 ## Tech stack
 
@@ -10,7 +10,7 @@ A premium, editorial, frontend-only fashion e-commerce website for **Kay Reluxe*
 - **GSAP + ScrollTrigger** — pinned horizontal scroll showcase
 - **Lenis** — smooth scrolling
 - **Lucide React** — icons
-- Local static data + **localStorage** for the shopping bag and favorites (no database)
+- Local static data + **localStorage** for the shopping bag (no database)
 
 ## Getting started
 
@@ -37,15 +37,14 @@ src/
   app/                        Routes (App Router)
     page.tsx                  Home
     shop/                     Shop with client-side filters
-    product/[slug]/           Product detail pages
     collections/              Collections index + [slug] detail
     about/                    Brand story
     contact/                  Contact info, form, FAQ
-    bag/                      Full shopping bag page
+    delivery-returns/         Delivery and returns information
     not-found.tsx             Custom 404
     sitemap.ts / robots.ts    SEO
   components/                 Reusable UI (Header, ProductCard, CartDrawer, ...)
-  context/                    CartContext, FavoritesContext, ToastContext
+  context/                    CartContext, ToastContext
   lib/
     config.ts                 <- Store-wide settings (edit this first)
     data/products.ts          <- Demo product catalog (replace with real data)
@@ -86,7 +85,7 @@ All store-wide settings live in `src/lib/config.ts`:
 
 ## Important note on demo data
 
-The 14 products in `src/lib/data/products.ts` are **placeholder data** — invented names, prices, sizes, and stock status for development purposes only, with generic stock-photo placeholders standing in for real product photography. None of this reflects real Kay Reluxe inventory. Replace every field with verified store data (and official photography) before launch. This is called out in a comment at the top of that file as well.
+The 14 products in `src/lib/data/products.ts` are **placeholder data** — invented names, prices, sizes, and stock status for development purposes only, with generic stock-photo placeholders standing in for real product photography. None of this reflects real Kay Raluxe inventory. Replace every field with verified store data (and official photography) before launch. This is called out in a comment at the top of that file as well.
 
 Likewise, the About page intentionally avoids inventing founding dates, physical locations, or unverifiable claims — add real details there once available.
 
@@ -98,19 +97,18 @@ Ordering is disabled on the product page until both a size and a color are selec
 
 ## Key features
 
-- Animated "KAY RELUXE" loading screen (shown once per session)
+- Animated "KAY RALUXE" loading screen (shown once per session)
 - Transparent-to-solid header on scroll, animated fullscreen mobile menu
 - Cinematic hero with parallax + scroll-linked fade
 - Client-side shop filtering (category, size, color, sort, search, new/sale toggles, active-filter chips, mobile filter drawer, grid/list view, empty state)
-- Product pages with gallery + fullscreen zoom, size guide modal, sticky mobile "Add to Bag," related products, recently viewed
-- Slide-out cart drawer + full bag page, both backed by `localStorage`
-- Favorites (heart) also persisted to `localStorage`
-- Frontend-only contact form with inline validation (clearly labeled as a visual demo)
+- Product pages with gallery + fullscreen zoom, sticky mobile "Add to Bag," related products, and recently viewed products
+- Slide-out shopping bag drawer backed by `localStorage`
+- Frontend contact form with inline validation
 - Respects `prefers-reduced-motion` throughout; visible focus states; semantic HTML; alt text on all imagery
 - `next/image` used throughout to avoid layout shift and optimize loading
 
 ## Known limitations (by design, per the brief)
 
 - No backend, database, authentication, CMS, or payment gateway — this is a fully static, frontend-only project.
-- The contact form does not send anywhere; it's a visual demo (clearly labeled in the UI) unless you wire it up to a form service of your choice.
+- The contact form validates in the browser; connect it to a form service when inbound email handling is needed.
 - Product/catalog data is static TypeScript, not a live inventory system.

@@ -17,6 +17,26 @@ export default function HorizontalShowcase({ products }: { products: Product[] }
 
     let ctx: gsap.Context | undefined;
     let mounted = true;
+    let ready = false;
+    let rebuildFrame = 0;
+    let trackWidth = 0;
+    let sectionWidth = 0;
+    let buildAnimation: () => void = () => undefined;
+
+    const observer = new ResizeObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.target === trackRef.current) trackWidth = entry.contentRect.width;
+        if (entry.target === sectionRef.current) sectionWidth = entry.contentRect.width;
+      });
+
+      if (!ready || rebuildFrame) return;
+      rebuildFrame = window.requestAnimationFrame(() => {
+        rebuildFrame = 0;
+        buildAnimation();
+      });
+    });
+    observer.observe(sectionRef.current);
+    observer.observe(trackRef.current);
 
     (async () => {
       const gsapModule = await import("gsap");
@@ -25,26 +45,40 @@ export default function HorizontalShowcase({ products }: { products: Product[] }
       gsap.registerPlugin(ScrollTrigger);
       if (!mounted || !sectionRef.current || !trackRef.current) return;
 
-      ctx = gsap.context(() => {
-        const track = trackRef.current!;
-        const distance = track.scrollWidth - window.innerWidth;
-        gsap.to(track, {
-          x: -distance,
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top top",
-            end: () => `+=${distance}`,
-            scrub: 1,
-            pin: true,
-            invalidateOnRefresh: true,
-          },
-        });
-      }, sectionRef);
+      buildAnimation = () => {
+        if (!mounted || !sectionRef.current || !trackRef.current) return;
+
+        ctx?.revert();
+        const distance = Math.max(0, trackWidth - sectionWidth);
+        if (!distance) return;
+
+        ctx = gsap.context(() => {
+          const track = trackRef.current!;
+          gsap.to(track, {
+            x: -distance,
+            ease: "none",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top top",
+              end: () => `+=${distance}`,
+              scrub: 1,
+              pin: true,
+              invalidateOnRefresh: true,
+            },
+          });
+        }, sectionRef);
+
+        ScrollTrigger.refresh();
+      };
+
+      ready = true;
+      buildAnimation();
     })();
 
     return () => {
       mounted = false;
+      observer.disconnect();
+      if (rebuildFrame) window.cancelAnimationFrame(rebuildFrame);
       ctx?.revert();
     };
   }, []);
@@ -52,7 +86,7 @@ export default function HorizontalShowcase({ products }: { products: Product[] }
   return (
     <section ref={sectionRef} className="relative overflow-hidden bg-charcoal py-20 lg:h-screen lg:py-0">
       <div className="lg:flex lg:h-full lg:items-center">
-        <div ref={trackRef} className="flex flex-col gap-10 px-6 sm:px-10 lg:flex-row lg:items-center lg:gap-8 lg:px-16">
+        <div ref={trackRef} className="flex flex-col gap-10 px-6 sm:px-10 lg:flex-row lg:items-center lg:gap-8 lg:px-16 lg:will-change-transform">
           <div className="shrink-0 lg:w-[380px]">
             <span className="mb-3 block font-sans text-xs font-semibold uppercase tracking-[0.25em] text-champagne">
               The Edit

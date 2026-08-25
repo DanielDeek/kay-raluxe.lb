@@ -12,7 +12,7 @@ import PageTransition from "@/components/PageTransition";
 import GsapEffects from "@/components/GsapEffects";
 import CartDrawer from "@/components/CartDrawer";
 import CustomCursor from "@/components/CustomCursor";
-import { SITE_URL, STORE_NAME, STORE_TAGLINE } from "@/lib/config";
+import { INSTAGRAM_URL, SITE_URL, SOCIAL_IMAGE_URL, STORE_ADDRESS, STORE_NAME, STORE_TAGLINE } from "@/lib/config";
 
 const displayFont = Cormorant_Garamond({
   subsets: ["latin"],
@@ -36,7 +36,8 @@ export const metadata: Metadata = {
     template: `%s — ${STORE_NAME}`,
   },
   description:
-    "Kay Reluxe offers Turkish outfits and trendy pieces with delivery all over Lebanon, size swaps, and WhatsApp ordering.",
+    "Kay Raluxe offers Turkish outfits and trendy pieces with delivery all over Lebanon, size swaps, and WhatsApp ordering.",
+  alternates: { canonical: "/" },
   openGraph: {
     title: `${STORE_NAME} — ${STORE_TAGLINE}`,
     description: "Turkish outfits. Trendy pieces. Infinite style.",
@@ -44,11 +45,13 @@ export const metadata: Metadata = {
     siteName: STORE_NAME,
     locale: "en_US",
     type: "website",
+    images: [{ url: SOCIAL_IMAGE_URL, width: 1200, height: 630, alt: "Kay Raluxe editorial fashion" }],
   },
   twitter: {
     card: "summary_large_image",
     title: `${STORE_NAME} — ${STORE_TAGLINE}`,
     description: "Turkish outfits. Trendy pieces. Infinite style.",
+    images: [SOCIAL_IMAGE_URL],
   },
   icons: {
     icon: "/favicon.ico",
@@ -68,6 +71,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ToastProvider>
           <CartProvider>
             <SmoothScroll>
+              <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                  __html: JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "OnlineStore",
+                    name: STORE_NAME,
+                    description: "Turkish outfits and trendy pieces with delivery all over Lebanon.",
+                    url: SITE_URL,
+                    logo: `${SITE_URL}/favicon.ico`,
+                    image: SOCIAL_IMAGE_URL,
+                    telephone: "+9613954746",
+                    address: { "@type": "PostalAddress", streetAddress: STORE_ADDRESS, addressCountry: "LB" },
+                    sameAs: [INSTAGRAM_URL],
+                  }),
+                }}
+              />
               <AnnouncementBar />
               <Header />
               <main id="main-content">

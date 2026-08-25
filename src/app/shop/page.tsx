@@ -3,7 +3,8 @@ import ShopClient from "./ShopClient";
 
 export const metadata: Metadata = {
   title: "Shop",
-  description: "Browse the full Kay Reluxe collection — dresses, tops, sets, bottoms and more.",
+  alternates: { canonical: "/shop" },
+  description: "Browse the full Kay Raluxe collection — dresses, tops, sets, bottoms and more.",
 };
 
 export default async function ShopPage({

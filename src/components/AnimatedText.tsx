@@ -29,8 +29,7 @@ export default function AnimatedText({
 
   return (
     <Tag id={id} className={cn("overflow-hidden", align === "center" && "text-center", className)}>
-      <span className="sr-only">{text}</span>
-      <span aria-hidden="true" className="inline">
+      <span className="inline">
         {words.map((word, i) => (
           <span key={i} className="inline-block overflow-hidden pb-1 pr-[0.28em]">
             <motion.span
@@ -47,6 +46,7 @@ export default function AnimatedText({
             >
               {word}
             </motion.span>
+            {i < words.length - 1 ? " " : null}
           </span>
         ))}
       </span>

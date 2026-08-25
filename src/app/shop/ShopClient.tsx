@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
@@ -95,7 +95,7 @@ export default function ShopClient({
         title="Every piece, one place."
         description="Explore the full edit by category, size, color, price, and collection."
         image={editorialImage("kr-page-shop", 1100, 1000, 2)}
-        imageAlt="Kay Reluxe fashion collection"
+        imageAlt="Kay Raluxe fashion collection"
       />
 
       <section className="container py-16 md:py-20 lg:py-24">

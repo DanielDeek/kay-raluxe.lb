@@ -19,9 +19,10 @@ export default function Hero() {
       <motion.div style={{ scale: imageScale, y: imageY }} className="absolute inset-0">
         <Image
           src={editorialImage("kr-hero-main", 1800, 1500, 1)}
-          alt="Woman wearing a refined Kay Reluxe evening look"
+          alt="Woman wearing a refined Kay Raluxe evening look"
           fill
-          preload
+          loading="eager"
+          fetchPriority="high"
           sizes="100vw"
           quality={80}
           className="object-cover object-[58%_24%] sm:object-[center_24%]"
@@ -89,7 +90,7 @@ export default function Hero() {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-          className="h-8 w-px bg-ivory/50"
+          className="h-8 w-px bg-ivory/50 will-change-transform"
         />
       </motion.div>
     </section>

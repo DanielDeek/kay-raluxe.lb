@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Image from "next/image";
 import AnimatedText from "@/components/AnimatedText";
 import Reveal from "@/components/Reveal";
@@ -10,7 +10,8 @@ import { editorialImage } from "@/lib/data/images";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "The story, mission and values behind Kay Reluxe.",
+  alternates: { canonical: "/about" },
+  description: "The story, mission and values behind Kay Raluxe.",
 };
 
 const VALUES = [
@@ -35,7 +36,7 @@ export default function AboutPage() {
         <Reveal className="absolute inset-0" y={0}>
           <Image
             src={editorialImage("kr-about-hero", 1800, 1400)}
-            alt="Kay Reluxe brand imagery"
+            alt="Kay Raluxe brand imagery"
             fill
             preload
             sizes="100vw"
@@ -58,10 +59,10 @@ export default function AboutPage() {
             <SectionHeading
               eyebrow="Who We Are"
               title="Curated for every version of you."
-              description="Kay Reluxe began with a simple idea: that getting dressed should feel like an act of confidence, not compromise. We curate pieces that move easily between your everyday and your evenings â€” considered fabrics, flattering cuts, and details that hold up to a second look."
+              description="Kay Raluxe began with a simple idea: that getting dressed should feel like an act of confidence, not compromise. We curate pieces that move easily between your everyday and your evenings â€” considered fabrics, flattering cuts, and details that hold up to a second look."
             />
             <p className="mt-5 font-sans text-sm leading-relaxed text-charcoal/65">
-              Kay Reluxe brings Turkish outfits and trendy pieces together in one considered edit, with delivery all over Lebanon and size swaps available when you need a different fit.
+              Kay Raluxe brings Turkish outfits and trendy pieces together in one considered edit, with delivery all over Lebanon and size swaps available when you need a different fit.
             </p>
           </Reveal>
           <Reveal x={32}
@@ -69,7 +70,7 @@ export default function AboutPage() {
           >
             <Image
               src={editorialImage("kr-about-1", 1000, 1250)}
-              alt="Kay Reluxe styling detail"
+              alt="Kay Raluxe styling detail"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               quality={75}
@@ -104,7 +105,7 @@ export default function AboutPage() {
           >
             <Image
               src={editorialImage("kr-about-2", 1000, 1250)}
-              alt="Woman wearing Kay Reluxe"
+              alt="Woman wearing Kay Raluxe"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               quality={75}

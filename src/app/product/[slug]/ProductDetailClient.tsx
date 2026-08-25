@@ -9,7 +9,6 @@ import SizeSelector from "@/components/SizeSelector";
 import ColorSelector from "@/components/ColorSelector";
 import QuantitySelector from "@/components/QuantitySelector";
 import Accordion from "@/components/Accordion";
-import Modal from "@/components/Modal";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ProductGrid from "@/components/ProductGrid";
 import SectionHeading from "@/components/SectionHeading";
@@ -19,7 +18,8 @@ import { products as allProducts } from "@/lib/data/products";
 import { useCart } from "@/context/CartContext";
 import { useToast } from "@/context/ToastContext";
 
-const RECENTLY_VIEWED_KEY = "kay-reluxe-recently-viewed";
+const RECENTLY_VIEWED_KEY = "kay-raluxe-recently-viewed";
+const LEGACY_RECENTLY_VIEWED_KEY = "kay-reluxe-recently-viewed";
 
 export default function ProductDetailClient({
   product,
@@ -32,7 +32,6 @@ export default function ProductDetailClient({
   const [color, setColor] = useState<string | null>(null);
   const [quantity, setQuantity] = useState(1);
   const [showErrors, setShowErrors] = useState(false);
-  const [sizeGuideOpen, setSizeGuideOpen] = useState(false);
   const [recentlyViewed, setRecentlyViewed] = useState<Product[]>([]);
   const { addItem, openBag } = useCart();
   const { showToast } = useToast();
@@ -66,7 +65,7 @@ export default function ProductDetailClient({
 
   useEffect(() => {
     try {
-      const raw = localStorage.getItem(RECENTLY_VIEWED_KEY);
+      const raw = localStorage.getItem(RECENTLY_VIEWED_KEY) ?? localStorage.getItem(LEGACY_RECENTLY_VIEWED_KEY);
       const ids: string[] = raw ? JSON.parse(raw) : [];
       const updated = [product.id, ...ids.filter((id) => id !== product.id)].slice(0, 6);
       localStorage.setItem(RECENTLY_VIEWED_KEY, JSON.stringify(updated));
@@ -142,7 +141,6 @@ export default function ProductDetailClient({
                   setShowErrors(false);
                 }}
                 showError={showErrors && !size}
-                onOpenGuide={() => setSizeGuideOpen(true)}
               />
               <div>
                 <span className="mb-3 block font-sans text-xs font-semibold uppercase tracking-[0.15em] text-charcoal">
@@ -216,39 +214,6 @@ export default function ProductDetailClient({
           <ProductGrid products={recentlyViewed} />
         </section>
       )}
-
-      <Modal open={sizeGuideOpen} onClose={() => setSizeGuideOpen(false)} title="Size Guide">
-        <table className="w-full border-collapse font-sans text-sm">
-          <thead>
-            <tr className="border-b border-charcoal/15 text-left text-xs uppercase tracking-wider text-charcoal/50">
-              <th className="py-2">Size</th>
-              <th className="py-2">Bust (cm)</th>
-              <th className="py-2">Waist (cm)</th>
-              <th className="py-2">Hip (cm)</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-charcoal/10">
-            {[
-              ["XS", "80", "62", "88"],
-              ["S", "84", "66", "92"],
-              ["M", "88", "70", "96"],
-              ["L", "94", "76", "102"],
-              ["XL", "100", "82", "108"],
-            ].map((row) => (
-              <tr key={row[0]}>
-                {row.map((cell, i) => (
-                  <td key={i} className="py-2.5 text-charcoal/75">
-                    {cell}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <p className="mt-4 font-sans text-xs text-charcoal/50">
-          Measurements are approximate. Contact us on WhatsApp for personalized fit guidance.
-        </p>
-      </Modal>
 
     </div>
   );

@@ -2,7 +2,7 @@ import SectionHeading from "@/components/SectionHeading";
 import CollectionCard from "@/components/CollectionCard";
 import { collections } from "@/lib/data/collections";
 
-const CATEGORY_SLUGS = ["new-arrivals", "dresses", "tops", "bottoms", "matching-sets", "accessories"];
+const CATEGORY_SLUGS = ["new-arrivals", "dresses", "tops", "sets", "bottoms"];
 
 export default function CategorySection() {
   const categories = CATEGORY_SLUGS
@@ -17,7 +17,7 @@ export default function CategorySection() {
           title="Start with what you are looking for."
           description="A considered edit of pieces made to move with your wardrobe."
         />
-        <div data-gsap-reveal className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:mt-10 lg:grid-cols-6 lg:gap-4">
+        <div data-gsap-reveal className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:mt-10 lg:grid-cols-5 lg:gap-4">
           {categories.map((collection) => (
             <CollectionCard
               key={collection.id}

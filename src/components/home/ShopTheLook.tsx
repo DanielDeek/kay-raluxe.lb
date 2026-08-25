@@ -29,7 +29,7 @@ export default function ShopTheLook() {
           <div data-gsap-reveal className="relative aspect-[4/5] overflow-hidden bg-beige sm:aspect-[5/4] lg:aspect-[4/5]">
             <Image
               src={editorialImage("kr-shop-the-look", 1200, 1500, 3)}
-              alt="Model wearing a layered Kay Reluxe outfit"
+              alt="Model wearing a layered Kay Raluxe outfit"
               fill
               sizes="(max-width: 1023px) 100vw, 55vw"
               quality={75}
