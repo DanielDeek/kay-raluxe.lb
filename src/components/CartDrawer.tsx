@@ -59,13 +59,13 @@ export default function CartDrawer() {
                   <div className="divide-y divide-charcoal/10">
                     {items.map((item) => (
                       <article key={`${item.productId}-${item.size}-${item.color}`} className="grid grid-cols-[76px_1fr] gap-4 py-5">
-                        <Link href={`/product/${item.slug}`} onClick={closeBag} className="relative aspect-[3/4] overflow-hidden bg-beige">
+                        <Link href={`/shop/${item.slug}`} onClick={closeBag} className="relative aspect-[3/4] overflow-hidden bg-beige">
                           <Image src={item.image} alt={item.name} fill sizes="76px" quality={70} className="object-cover" />
                         </Link>
                         <div className="min-w-0">
                           <div className="flex items-start justify-between gap-3">
                             <div>
-                              <Link href={`/product/${item.slug}`} onClick={closeBag} className="font-display text-xl text-charcoal hover:text-mutedBrown">{item.name}</Link>
+                              <Link href={`/shop/${item.slug}`} onClick={closeBag} className="font-display text-xl text-charcoal hover:text-mutedBrown">{item.name}</Link>
                               <p className="mt-1 font-sans text-[10px] uppercase tracking-[0.12em] text-charcoal/50">{item.color} · {item.size}</p>
                             </div>
                             <button type="button" onClick={() => removeItem(item.productId, item.size, item.color)} aria-label={`Remove ${item.name}`} className="p-1 text-charcoal/40 hover:text-charcoal"><Trash2 className="h-3.5 w-3.5" /></button>

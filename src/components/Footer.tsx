@@ -69,9 +69,9 @@ export default function Footer() {
             <FooterColumn title="Help" links={HELP_LINKS} />
 
             <div className="col-span-2 min-w-0 sm:col-span-1">
-              <h3 className="mb-5 font-sans text-[10px] font-semibold uppercase tracking-[0.25em] text-ivory/45">
+              <h2 className="mb-5 font-sans text-[10px] font-semibold uppercase tracking-[0.25em] text-ivory/45">
                 Contact
-              </h3>
+              </h2>
               <ul className="space-y-3.5 font-sans text-sm text-ivory/65">
                 <li>
                   <a href={`tel:${CONTACT_PHONE_DISPLAY.replace(/\s/g, "")}`} className={linkClass}>
@@ -109,9 +109,9 @@ export default function Footer() {
 function FooterColumn({ title, links }: { title: string; links: { href: string; label: string }[] }) {
   return (
     <div className="min-w-0">
-      <h3 className="mb-5 font-sans text-[10px] font-semibold uppercase tracking-[0.25em] text-ivory/45">
+      <h2 className="mb-5 font-sans text-[10px] font-semibold uppercase tracking-[0.25em] text-ivory/45">
         {title}
-      </h3>
+      </h2>
       <ul className="space-y-3.5">
         {links.map((link) => (
           <li key={link.href}>

@@ -31,7 +31,7 @@ export default function ProductCard({
             src={product.image}
             alt={product.name}
             fill
-            priority={priority}
+            preload={priority}
             sizes={imageSizes}
             quality={75}
             className="object-cover transition-opacity duration-500 group-hover:opacity-0"

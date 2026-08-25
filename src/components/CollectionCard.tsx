@@ -26,6 +26,7 @@ export default function CollectionCard({
             alt={collection.title}
             fill
             sizes={imageSizes}
+            quality={70}
             className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-charcoal/5 to-transparent" />

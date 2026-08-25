@@ -16,7 +16,7 @@ export default function PageIntro({ eyebrow, title, description, image, imageAlt
         src={image}
         alt={imageAlt}
         fill
-        priority
+        preload
         sizes="100vw"
         quality={75}
         data-gsap-parallax

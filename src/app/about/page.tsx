@@ -37,7 +37,7 @@ export default function AboutPage() {
             src={editorialImage("kr-about-hero", 1800, 1400)}
             alt="Kay Reluxe brand imagery"
             fill
-            priority
+            preload
             sizes="100vw"
             quality={75}
             className="object-cover"

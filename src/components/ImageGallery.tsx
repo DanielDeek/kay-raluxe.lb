@@ -52,7 +52,7 @@ export default function ImageGallery({ images, name }: { images: string[]; name:
                   src={images[active]}
                   alt={`${name} — view ${active + 1}`}
                   fill
-                  priority
+                  preload
                   sizes="(max-width: 1023px) 100vw, 50vw"
                   quality={75}
                   className="object-cover transition-transform duration-700 group-hover:scale-105"

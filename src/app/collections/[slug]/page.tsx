@@ -37,7 +37,7 @@ export default async function CollectionDetailPage({ params }: { params: Promise
   return (
     <div className="pb-28">
       <section className="relative flex h-[45vh] min-h-[320px] w-full items-end overflow-hidden sm:h-[55vh]">
-        <Image src={collection.image} alt={collection.title} fill priority sizes="100vw" quality={75} className="object-cover" />
+        <Image src={collection.image} alt={collection.title} fill preload sizes="100vw" quality={75} className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-ivory/55 via-ivory/10 to-transparent" />
         <div className="container relative z-10 pb-12">
           <AnimatedText text={collection.title} as="h1" animateOnMount className="font-display text-4xl text-charcoal sm:text-6xl" />

@@ -21,7 +21,7 @@ export default function Hero() {
           src={editorialImage("kr-hero-main", 1800, 1500, 1)}
           alt="Woman wearing a refined Kay Reluxe evening look"
           fill
-          priority
+          preload
           sizes="100vw"
           quality={80}
           className="object-cover object-[58%_24%] sm:object-[center_24%]"
