@@ -7,7 +7,6 @@ import PromoBanner from "@/components/home/PromoBanner";
 import ShopTheLook from "@/components/home/ShopTheLook";
 import BenefitsSection from "@/components/home/BenefitsSection";
 import InstagramGallery from "@/components/InstagramGallery";
-import Newsletter from "@/components/Newsletter";
 import { getBestSellerProducts, getNewArrivals } from "@/lib/data/products";
 
 export const metadata: Metadata = {
@@ -39,11 +38,6 @@ export default function HomePage() {
       <ShopTheLook />
       <BenefitsSection />
       <InstagramGallery />
-      <section className="bg-charcoal py-16 text-ivory md:py-20">
-        <div className="container">
-          <Newsletter dark />
-        </div>
-      </section>
     </div>
   );
 }

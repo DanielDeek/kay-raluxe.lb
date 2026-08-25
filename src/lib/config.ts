@@ -1,31 +1,31 @@
 /**
  * Store-wide editable configuration.
- * Replace placeholder values with verified Kay Reluxe details before launch.
+ * Store-wide verified Kay Reluxe details.
  */
 
 // Digits only, international format. Example: 9613123456
-export const WHATSAPP_NUMBER = "9613000000";
+export const WHATSAPP_NUMBER = "9613954746";
 export const INSTAGRAM_URL = "https://www.instagram.com/kay.raluxe.lb/";
 export const INSTAGRAM_HANDLE = "@kay.raluxe.lb";
 
-export const CONTACT_PHONE_DISPLAY = "+961 3 000 000";
-export const CONTACT_EMAIL = "hello@kayreluxe.example.com";
-export const BUSINESS_HOURS = "[Add verified opening hours]";
-export const ADDRESS_PLACEHOLDER = "[Add verified store or studio address]";
-export const DELIVERY_NOTE = "Delivery across Lebanon | WhatsApp";
+export const CONTACT_PHONE_DISPLAY = "+961 3 954 746";
+export const CONTACT_EMAIL = "";
+export const BUSINESS_HOURS = "Message us on WhatsApp for current availability.";
+export const ADDRESS_PLACEHOLDER = "Saida Highway, facing Spot Mall";
+export const DELIVERY_NOTE = "Delivery all over Lebanon | WhatsApp";
 
 export const DELIVERY_POLICY = {
-  areas: "[Add the areas Kay Reluxe currently serves]",
-  fees: "[Add delivery fees or explain how they are calculated]",
-  timing: "[Add estimated delivery times]",
-  exchanges: "[Add the verified exchange policy]",
-  returns: "[Add the verified return policy]",
-  damaged: "[Add the process for damaged or incorrect items]",
-  modifications: "[Add the window for order modifications]",
+  areas: "All over Lebanon",
+  fees: "Confirmed on WhatsApp based on your delivery area",
+  timing: "Confirmed with you when your order is placed",
+  exchanges: "Size swap available, subject to availability. Contact us on WhatsApp to arrange it.",
+  returns: "Contact us on WhatsApp for return questions and order support.",
+  damaged: "Message us on WhatsApp as soon as possible with your order details and photos.",
+  modifications: "Message us on WhatsApp as soon as possible; changes depend on order status.",
   support: "Contact Kay Reluxe on WhatsApp for order support.",
 };
 
 export const STORE_NAME = "Kay Reluxe";
-export const STORE_TAGLINE = "Confidence, Styled.";
+export const STORE_TAGLINE = "Trendy Pieces, Infinite Style!";
 export const CURRENCY = "$";
 export const SITE_URL = "https://kayreluxe.example.com";

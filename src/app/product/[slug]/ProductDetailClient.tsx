@@ -177,7 +177,7 @@ export default function ProductDetailClient({
 
             <div className="mt-8 grid grid-cols-1 gap-3 border-t border-charcoal/10 pt-6 font-sans text-xs text-charcoal/60 sm:grid-cols-3">
               <div className="flex items-center gap-2">
-                <Truck className="h-4 w-4 text-mutedBrown" /> Delivery across Lebanon
+                <Truck className="h-4 w-4 text-mutedBrown" /> Delivery all over Lebanon
               </div>
               <div className="flex items-center gap-2">
                 <ShieldCheck className="h-4 w-4 text-mutedBrown" /> Quality checked

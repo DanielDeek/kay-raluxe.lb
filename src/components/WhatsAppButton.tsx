@@ -1,8 +1,8 @@
 "use client";
 
-import { MessageCircle } from "lucide-react";
 import { WHATSAPP_NUMBER } from "@/lib/config";
 import { cn } from "@/lib/utils";
+import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 
 interface WhatsAppButtonProps {
   message?: string;
@@ -33,7 +33,7 @@ export default function WhatsAppButton({
           className
         )}
       >
-        <MessageCircle className="h-6 w-6" fill="white" strokeWidth={0} />
+        <WhatsAppIcon className="h-5 w-5" />
       </a>
     );
   }
@@ -48,7 +48,7 @@ export default function WhatsAppButton({
   if (disabled) {
     return (
       <button type="button" disabled className={cn(base, styles, className)}>
-        <MessageCircle className="h-4 w-4" />
+        <WhatsAppIcon className="h-3.5 w-3.5" />
         {label}
       </button>
     );
@@ -61,7 +61,7 @@ export default function WhatsAppButton({
       rel="noopener noreferrer"
       className={cn(base, styles, className)}
     >
-      <MessageCircle className="h-4 w-4" />
+      <WhatsAppIcon className="h-3.5 w-3.5" />
       {label}
     </a>
   );

@@ -31,7 +31,7 @@ export default function Hero() {
 
       <motion.div
         style={{ opacity: contentOpacity }}
-        className="relative z-10 flex h-full flex-col items-start justify-end px-5 pb-16 text-left sm:px-10 sm:pb-20 lg:px-16 lg:pb-24"
+        className="relative z-10 flex h-full flex-col items-start justify-end px-5 pb-32 text-left sm:px-10 sm:pb-20 lg:px-16 lg:pb-24"
       >
         <motion.span
           initial={{ opacity: 0, y: 10 }}
@@ -82,7 +82,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.6 }}
-        className="absolute inset-x-0 bottom-8 z-10 flex flex-col items-center gap-2 text-ivory/70"
+        className="pointer-events-none absolute inset-x-0 bottom-5 z-10 flex flex-col items-center gap-2 text-ivory/70 sm:bottom-8"
       >
         <span className="font-sans text-[10px] uppercase tracking-[0.3em]">Scroll</span>
         <motion.div

@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { X, MessageCircle } from "lucide-react";
+import { X } from "lucide-react";
 import InstagramIcon from "@/components/icons/InstagramIcon";
+import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 import { INSTAGRAM_URL, INSTAGRAM_HANDLE, WHATSAPP_NUMBER } from "@/lib/config";
 
 interface MobileMenuProps {
@@ -69,7 +70,7 @@ export default function MobileMenu({ open, onClose, links }: MobileMenuProps) {
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-sm text-ivory/80 hover:text-champagne"
             >
-              <MessageCircle className="h-4 w-4" />
+              <WhatsAppIcon className="h-3.5 w-3.5" />
               WhatsApp
             </a>
           </div>

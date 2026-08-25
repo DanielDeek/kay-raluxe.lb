@@ -1,5 +1,5 @@
 ﻿import type { Metadata } from "next";
-import { MessageCircle, Phone, Clock, Truck, Mail, MapPin } from "lucide-react";
+import { Phone, Clock, Truck, Mail, MapPin } from "lucide-react";
 import PageIntro from "@/components/PageIntro";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
@@ -7,6 +7,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import Accordion from "@/components/Accordion";
 import InstagramIcon from "@/components/icons/InstagramIcon";
 import ContactForm from "./ContactForm";
+import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 import { editorialImage } from "@/lib/data/images";
 import {
   INSTAGRAM_URL,
@@ -42,12 +43,12 @@ const FAQ_ITEMS = [
   {
     question: "Can I exchange a size?",
     answer:
-      "Yes â€” message us on WhatsApp within a few days of delivery and we'll help arrange an exchange, subject to availability.",
+      "Yes - size swaps are available, subject to availability. Message us on WhatsApp and we will help arrange it.",
   },
   {
     question: "Do you have a physical store?",
     answer:
-      "We currently operate as an online boutique, with orders placed and confirmed through WhatsApp.",
+      "You can find us on Saida Highway, facing Spot Mall. Message us on WhatsApp before visiting for the latest details.",
   },
 ];
 
@@ -66,16 +67,18 @@ export default function ContactPage() {
         <Reveal x={-24}>
           <SectionHeading eyebrow="Reach Us" title="Contact Details" className="mb-8" />
           <ul className="space-y-5">
-            <li className="flex items-start gap-3">
-              <Mail className="mt-0.5 h-5 w-5 shrink-0 text-mutedBrown" />
-              <div><p className="font-sans text-sm font-medium text-charcoal">Email</p><a href={`mailto:${CONTACT_EMAIL}`} className="font-sans text-sm text-mutedBrown underline underline-offset-4">{CONTACT_EMAIL}</a></div>
-            </li>
+            {CONTACT_EMAIL && (
+              <li className="flex items-start gap-3">
+                <Mail className="mt-0.5 h-5 w-5 shrink-0 text-mutedBrown" />
+                <div><p className="font-sans text-sm font-medium text-charcoal">Email</p><a href={`mailto:${CONTACT_EMAIL}`} className="font-sans text-sm text-mutedBrown underline underline-offset-4">{CONTACT_EMAIL}</a></div>
+              </li>
+            )}
             <li className="flex items-start gap-3">
               <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-mutedBrown" />
               <div><p className="font-sans text-sm font-medium text-charcoal">Address</p><p className="font-sans text-sm text-charcoal/60">{ADDRESS_PLACEHOLDER}</p></div>
             </li>
             <li className="flex items-start gap-3">
-              <MessageCircle className="mt-0.5 h-5 w-5 shrink-0 text-mutedBrown" />
+              <WhatsAppIcon className="mt-0.5 h-4 w-4 shrink-0 text-mutedBrown" />
               <div>
                 <p className="font-sans text-sm font-medium text-charcoal">WhatsApp</p>
                 <p className="font-sans text-sm text-charcoal/60">Fastest way to reach us and place an order.</p>
@@ -136,7 +139,7 @@ export default function ContactPage() {
         <Reveal
           className="flex min-h-48 items-center justify-center border border-dashed border-charcoal/20 bg-beige/40 text-center"
         >
-          <div><MapPin className="mx-auto h-6 w-6 text-mutedBrown" /><p className="mt-3 font-sans text-sm text-charcoal/60">Map placeholder â€” add a verified location when available.</p></div>
+          <div><MapPin className="mx-auto h-6 w-6 text-mutedBrown" /><p className="mt-3 font-sans text-sm text-charcoal/60">Saida Highway, facing Spot Mall</p></div>
         </Reveal>
       </section>
     </div>

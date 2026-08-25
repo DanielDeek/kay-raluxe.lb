@@ -27,7 +27,7 @@ export default function DeliveryReturnsPage() {
       <PageIntro
         eyebrow="Good to know"
         title="Delivery & Returns"
-        description="The details below are intentionally editable until Kay Reluxe's verified policies are confirmed."
+        description="Delivery all over Lebanon, with size swaps available subject to stock."
         image={editorialImage("kr-page-delivery", 1100, 1000, 1)}
         imageAlt="Kay Reluxe fashion piece ready for delivery"
       />

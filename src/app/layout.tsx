@@ -20,10 +20,10 @@ export const metadata: Metadata = {
     template: `%s — ${STORE_NAME}`,
   },
   description:
-    "Kay Reluxe is a Lebanon-based women's fashion boutique offering curated dresses, tops, sets and more, with delivery across Lebanon and ordering via WhatsApp.",
+    "Kay Reluxe offers Turkish outfits and trendy pieces with delivery all over Lebanon, size swaps, and WhatsApp ordering.",
   openGraph: {
     title: `${STORE_NAME} — ${STORE_TAGLINE}`,
-    description: "Curated fashion for every version of you.",
+    description: "Turkish outfits. Trendy pieces. Infinite style.",
     url: SITE_URL,
     siteName: STORE_NAME,
     locale: "en_US",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: `${STORE_NAME} — ${STORE_TAGLINE}`,
-    description: "Curated fashion for every version of you.",
+    description: "Turkish outfits. Trendy pieces. Infinite style.",
   },
   icons: {
     icon: "/favicon.ico",

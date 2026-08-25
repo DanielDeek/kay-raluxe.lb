@@ -60,7 +60,7 @@ export default function AboutPage() {
               description="Kay Reluxe began with a simple idea: that getting dressed should feel like an act of confidence, not compromise. We curate pieces that move easily between your everyday and your evenings â€” considered fabrics, flattering cuts, and details that hold up to a second look."
             />
             <p className="mt-5 font-sans text-sm leading-relaxed text-charcoal/65">
-              <strong className="font-medium text-charcoal">Editable brand copy:</strong> replace this section with Kay Reluxe&apos;s verified story, location and quality philosophy before launch. The visual structure is ready for the real words.
+              Kay Reluxe brings Turkish outfits and trendy pieces together in one considered edit, with delivery all over Lebanon and size swaps available when you need a different fit.
             </p>
           </Reveal>
           <Reveal x={32}
