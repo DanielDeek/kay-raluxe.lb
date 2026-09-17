@@ -59,3 +59,28 @@ export interface ToastMessage {
   description?: string;
   variant?: "default" | "success" | "error";
 }
+
+export interface CustomerUser {
+  id: number;
+  name: string;
+  email: string;
+  phone: string | null;
+}
+
+export interface CustomerOrderItem {
+  name: string;
+  size: string;
+  color: string;
+  quantity: number;
+  unit_price: number;
+  line_total: number;
+}
+
+export interface CustomerOrder {
+  id: number;
+  order_number: string;
+  status: string;
+  total: number | string;
+  created_at: string;
+  items: CustomerOrderItem[];
+}

@@ -4,10 +4,11 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, Search, ShoppingBag, X } from "lucide-react";
+import { LogOut, Menu, Search, ShoppingBag, UserRound, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import MobileMenu from "./MobileMenu";
 import { useCart } from "@/context/CartContext";
+import { useAuth } from "@/context/AuthContext";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -23,9 +24,11 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [accountOpen, setAccountOpen] = useState(false);
   const [query, setQuery] = useState("");
   const searchInputRef = useRef<HTMLInputElement>(null);
   const { count, openBag } = useCart();
+  const { user, logout } = useAuth();
 
   const isHome = pathname === "/";
 
@@ -68,7 +71,17 @@ export default function Header() {
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- close the transient search panel after navigation
     setSearchOpen(false);
+    setAccountOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    if (!accountOpen) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setAccountOpen(false);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [accountOpen]);
 
   const transparent = isHome && !scrolled && !menuOpen;
 
@@ -90,7 +103,7 @@ export default function Header() {
               transparent ? "text-ivory" : "text-charcoal"
             )}
           >
-            KAY RALUXE
+            LUXE AVENUE
           </Link>
 
           <nav className="hidden items-center gap-8 lg:flex">
@@ -197,6 +210,63 @@ export default function Header() {
                 </span>
               )}
             </button>
+            <div
+              className="relative"
+              onMouseEnter={() => setAccountOpen(true)}
+              onMouseLeave={() => setAccountOpen(false)}
+              onFocus={() => setAccountOpen(true)}
+              onBlur={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setAccountOpen(false);
+              }}
+            >
+              <button
+                type="button"
+                onClick={() => setAccountOpen((open) => !open)}
+                aria-label={user ? "Open my account menu" : "Open sign in menu"}
+                aria-expanded={accountOpen}
+                aria-controls="account-menu"
+                className={cn("flex h-11 w-11 items-center justify-center", transparent ? "text-ivory" : "text-charcoal")}
+              >
+                <UserRound className="h-5 w-5" />
+              </button>
+              <AnimatePresence>
+                {accountOpen && (
+                  <motion.div
+                    id="account-menu"
+                    initial={{ opacity: 0, y: -5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -5 }}
+                    transition={{ duration: 0.16 }}
+                    className="absolute right-0 top-full z-50 w-56 pt-2"
+                  >
+                    <div className="border border-charcoal/10 bg-ivory p-2 text-charcoal shadow-lg">
+                      {user ? (
+                        <>
+                          <div className="border-b border-charcoal/10 px-3 py-3">
+                            <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-mutedBrown">Signed in as</p>
+                            <p className="mt-1 truncate font-sans text-sm font-medium text-charcoal">{user.name}</p>
+                          </div>
+                          <Link href="/account" className="mt-1 block px-3 py-3 font-sans text-sm transition-colors hover:bg-beige/60">My account</Link>
+                          <button
+                            type="button"
+                            onClick={() => { void logout(); setAccountOpen(false); }}
+                            className="flex min-h-11 w-full items-center gap-2 px-3 py-3 text-left font-sans text-sm text-charcoal/70 transition-colors hover:bg-beige/60 hover:text-charcoal"
+                          >
+                            <LogOut className="h-4 w-4" />
+                            Logout
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <Link href="/login" className="block px-3 py-3 font-sans text-sm transition-colors hover:bg-beige/60">Sign in</Link>
+                          <Link href="/register" className="block bg-charcoal px-3 py-3 font-sans text-sm text-ivory transition-colors hover:bg-mutedBrown">Create account</Link>
+                        </>
+                      )}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
             <button
               onClick={() => setMenuOpen(true)}
               aria-label="Open menu"

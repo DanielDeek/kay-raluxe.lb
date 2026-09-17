@@ -3,6 +3,8 @@ import { Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
 import { ToastProvider } from "@/context/ToastContext";
 import { CartProvider } from "@/context/CartContext";
+import { AuthProvider } from "@/context/AuthContext";
+import { SiteContentProvider } from "@/context/SiteContentContext";
 import SmoothScroll from "@/components/SmoothScroll";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -36,7 +38,7 @@ export const metadata: Metadata = {
     template: `%s — ${STORE_NAME}`,
   },
   description:
-    "Kay Raluxe offers Turkish outfits and trendy pieces with delivery all over Lebanon, size swaps, and WhatsApp ordering.",
+    "Luxe Avenue offers Turkish outfits and trendy pieces with delivery all over Lebanon, size swaps, and WhatsApp ordering.",
   alternates: { canonical: "/" },
   openGraph: {
     title: `${STORE_NAME} — ${STORE_TAGLINE}`,
@@ -45,7 +47,7 @@ export const metadata: Metadata = {
     siteName: STORE_NAME,
     locale: "en_US",
     type: "website",
-    images: [{ url: SOCIAL_IMAGE_URL, width: 1200, height: 630, alt: "Kay Raluxe editorial fashion" }],
+    images: [{ url: SOCIAL_IMAGE_URL, width: 1200, height: 630, alt: "Luxe Avenue editorial fashion" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -70,7 +72,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${displayFont.variable} ${sansFont.variable} font-sans antialiased`}>
         <ToastProvider>
           <CartProvider>
-            <SmoothScroll>
+            <AuthProvider>
+              <SiteContentProvider>
+                <SmoothScroll>
               <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
@@ -99,7 +103,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <CartDrawer />
               <WhatsAppButton variant="floating" />
               <CustomCursor />
-            </SmoothScroll>
+                </SmoothScroll>
+              </SiteContentProvider>
+            </AuthProvider>
           </CartProvider>
         </ToastProvider>
       </body>

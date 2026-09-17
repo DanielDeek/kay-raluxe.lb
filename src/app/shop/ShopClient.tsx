@@ -95,7 +95,8 @@ export default function ShopClient({
         title="Every piece, one place."
         description="Explore the full edit by category, size, color, price, and collection."
         image={editorialImage("kr-page-shop", 1100, 1000, 2)}
-        imageAlt="Kay Raluxe fashion collection"
+        imageAlt="Luxe Avenue fashion collection"
+        contentPrefix="page_shop"
       />
 
       <section className="container py-16 md:py-20 lg:py-24">

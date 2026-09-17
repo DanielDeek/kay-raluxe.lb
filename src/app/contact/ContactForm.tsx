@@ -20,7 +20,7 @@ export default function ContactForm() {
     if (!message) nextErrors.message = "Please enter a message.";
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length) return;
-    window.open(buildWhatsAppLink(`Hello Kay Raluxe, my name is ${name}. My email is ${email}.\n\n${message}`), "_blank", "noopener,noreferrer");
+    window.open(buildWhatsAppLink(`Hello Luxe Avenue, my name is ${name}. My email is ${email}.\n\n${message}`), "_blank", "noopener,noreferrer");
     showToast({ title: "Opening WhatsApp", description: "Your message is ready to send.", variant: "success" });
     event.currentTarget.reset();
   }

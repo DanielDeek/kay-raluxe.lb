@@ -8,7 +8,7 @@ import { editorialImage } from "@/lib/data/images";
 export const metadata: Metadata = {
   title: "Delivery & Returns",
   alternates: { canonical: "/delivery-returns" },
-  description: "Editable delivery, exchange and returns information for Kay Raluxe.",
+  description: "Editable delivery, exchange and returns information for Luxe Avenue.",
 };
 
 const sections = [
@@ -30,7 +30,8 @@ export default function DeliveryReturnsPage() {
         title="Delivery & Returns"
         description="Delivery all over Lebanon, with size swaps available subject to stock."
         image={editorialImage("kr-page-delivery", 1100, 1000, 1)}
-        imageAlt="Kay Raluxe fashion piece ready for delivery"
+        imageAlt="Luxe Avenue fashion piece ready for delivery"
+        contentPrefix="page_delivery"
       />
       <section className="container grid gap-x-16 gap-y-12 py-16 md:grid-cols-2 md:py-20 lg:py-24">
         {sections.map(([title, body]) => (
@@ -44,7 +45,7 @@ export default function DeliveryReturnsPage() {
         <SectionHeading
           eyebrow="Need help?"
           title="We can talk it through."
-          description="For a specific order or fit question, message Kay Raluxe directly on WhatsApp."
+          description="For a specific order or fit question, message Luxe Avenue directly on WhatsApp."
         />
         <Link href="/contact" className="mt-7 inline-flex bg-charcoal px-7 py-3.5 font-sans text-sm text-ivory hover:bg-mutedBrown">
           Contact us

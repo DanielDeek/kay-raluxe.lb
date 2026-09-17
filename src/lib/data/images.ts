@@ -1,4 +1,4 @@
-// Editorial fashion photography used until Kay Raluxe product photography is supplied.
+// Editorial fashion photography used until Luxe Avenue product photography is supplied.
 // Replace these URLs with the brand's own image files when they are available.
 const EDITORIAL_PHOTOS = [
   "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f",

@@ -7,7 +7,7 @@ import { editorialImage } from "./images";
  *
  * These 14 products, their names, prices, sizes, colors and stock
  * status are placeholders created for development purposes only.
- * Every field must be replaced with verified Kay Raluxe data
+ * Every field must be replaced with verified Luxe Avenue data
  * (real photography, real prices, real stock) before this site
  * goes live. Image URLs point to generic stock placeholders and
  * must be swapped for official product photography.

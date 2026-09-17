@@ -20,7 +20,7 @@ const SHOP_LINKS = [
 
 const HELP_LINKS = [
   { href: "/contact", label: "Contact Us" },
-  { href: "/about", label: "About Kay Raluxe" },
+  { href: "/about", label: "About Luxe Avenue" },
   { href: "/contact#faq", label: "FAQ" },
   { href: "/delivery-returns", label: "Delivery & Returns" },
 ];
@@ -34,7 +34,7 @@ export default function Footer() {
         <div className="grid gap-12 border-b border-ivory/15 py-14 sm:gap-14 sm:py-16 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,2fr)] lg:gap-20 lg:py-20">
           <div className="min-w-0">
             <Link href="/" className="inline-block font-display text-2xl tracking-[0.18em] text-ivory transition-colors hover:text-champagne sm:text-3xl">
-              KAY RALUXE
+              LUXE AVENUE
             </Link>
             <p className="mt-5 max-w-sm font-sans text-sm leading-7 text-ivory/60">
               Turkish outfits and trendy pieces for every version of your style. Delivery all over Lebanon.
@@ -45,7 +45,7 @@ export default function Footer() {
                 href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Kay Raluxe on Instagram"
+                aria-label="Luxe Avenue on Instagram"
                 title="Instagram"
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-ivory/25 text-ivory/75 transition-colors hover:border-champagne hover:text-champagne"
               >
@@ -55,7 +55,7 @@ export default function Footer() {
                 href={`https://wa.me/${WHATSAPP_NUMBER}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Message Kay Raluxe on WhatsApp"
+                aria-label="Message Luxe Avenue on WhatsApp"
                 title="WhatsApp"
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-ivory/25 text-ivory/75 transition-colors hover:border-champagne hover:text-champagne"
               >
@@ -95,7 +95,7 @@ export default function Footer() {
 
         <div className="flex flex-col gap-4 py-6 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
           <p className="font-sans text-[11px] text-ivory/40">
-            (c) {new Date().getFullYear()} Kay Raluxe. All rights reserved.
+            (c) {new Date().getFullYear()} Luxe Avenue. All rights reserved.
           </p>
           <Link href="/delivery-returns" className="font-sans text-[11px] text-ivory/45 transition-colors hover:text-champagne">
             Shipping &amp; Returns

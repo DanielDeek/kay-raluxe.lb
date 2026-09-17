@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Page Not Found",
-  description: "The Kay Raluxe page you requested could not be found.",
+  description: "The Luxe Avenue page you requested could not be found.",
   robots: { index: false, follow: false },
 };
 

@@ -1,0 +1,62 @@
+.admin-shell {
+    height: 100dvh;
+    min-height: 100dvh;
+}
+
+.admin-sidebar {
+    align-self: flex-start;
+    height: 100dvh;
+    max-height: 100dvh;
+    min-height: 100dvh;
+    overflow: visible;
+    padding: 24px 16px;
+    position: sticky;
+    top: 0;
+}
+
+.admin-main {
+    height: 100dvh;
+    overflow-y: auto;
+}
+
+.sidebar-nav {
+    margin-top: 34px;
+}
+
+.nav-link {
+    margin: 1px 0;
+    padding: 10px 11px;
+}
+
+.nav-label-spaced {
+    margin-top: 24px;
+}
+
+.sidebar-footer {
+    padding-top: 14px;
+}
+
+.sidebar-footer a,
+.sidebar-footer button {
+    margin-top: 8px;
+}
+
+@media (max-width: 760px) {
+    .admin-shell {
+        height: auto;
+    }
+
+    .admin-sidebar {
+        bottom: 0;
+        height: 100dvh;
+        min-height: 100dvh;
+        position: fixed;
+        top: 0;
+    }
+
+    .admin-main {
+        height: auto;
+        min-height: 100dvh;
+        overflow: visible;
+    }
+}

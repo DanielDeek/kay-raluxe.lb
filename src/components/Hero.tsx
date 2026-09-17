@@ -1,13 +1,22 @@
 "use client";
 
 import { useRef } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import AnimatedText from "./AnimatedText";
 import { editorialImage } from "@/lib/data/images";
+import { useSiteContent } from "@/context/SiteContentContext";
 
 export default function Hero() {
+  const { getContent } = useSiteContent();
+  const image = getContent("home_hero_image", editorialImage("kr-hero-main", 1800, 1500, 1));
+  const eyebrow = getContent("home_hero_eyebrow", "The new season");
+  const title = getContent("home_hero_title", "Dress for the way you feel.");
+  const description = getContent("home_hero_description", "Curated silhouettes for days that become nights, and the version of you that owns the room.");
+  const primaryLabel = getContent("home_hero_primary_label", "Shop New Collection");
+  const primaryLink = getContent("home_hero_primary_link", "/collections/new-arrivals");
+  const secondaryLabel = getContent("home_hero_secondary_label", "Explore Best Sellers");
+  const secondaryLink = getContent("home_hero_secondary_link", "/collections/best-sellers");
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.25]);
@@ -17,15 +26,14 @@ export default function Hero() {
   return (
     <section ref={ref} aria-labelledby="hero-title" className="relative min-h-[620px] h-[calc(100svh-32px)] max-h-[900px] w-full overflow-hidden bg-charcoal">
       <motion.div style={{ scale: imageScale, y: imageY }} className="absolute inset-0">
-        <Image
-          src={editorialImage("kr-hero-main", 1800, 1500, 1)}
-          alt="Woman wearing a refined Kay Raluxe evening look"
-          fill
+        {/* The content image accepts any public URL entered in the admin editor. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={image}
+          alt="Woman wearing a refined Luxe Avenue evening look"
           loading="eager"
           fetchPriority="high"
-          sizes="100vw"
-          quality={80}
-          className="object-cover object-[58%_24%] sm:object-[center_24%]"
+          className="absolute inset-0 h-full w-full object-cover object-[58%_24%] sm:object-[center_24%]"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-charcoal/60 via-charcoal/10 to-charcoal/20" />
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-charcoal/15" />
@@ -41,10 +49,10 @@ export default function Hero() {
           transition={{ delay: 0.35, duration: 0.6 }}
           className="mb-4 font-sans text-xs font-semibold uppercase tracking-[0.3em] text-champagne"
         >
-          The new season
+          {eyebrow}
         </motion.span>
         <AnimatedText
-          text="Dress for the way you feel."
+          text={title}
           as="h1"
           id="hero-title"
           delay={0.45}
@@ -57,7 +65,7 @@ export default function Hero() {
           transition={{ delay: 0.8, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="mt-5 max-w-md font-sans text-sm leading-relaxed text-ivory/80 sm:text-base"
         >
-          Curated silhouettes for days that become nights, and the version of you that owns the room.
+          {description}
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -66,16 +74,16 @@ export default function Hero() {
           className="mt-7 flex w-full flex-col gap-3 sm:w-auto sm:flex-row"
         >
           <Link
-            href="/collections/new-arrivals"
+            href={primaryLink}
             className="inline-flex min-h-12 items-center justify-center bg-ivory px-7 py-3.5 font-sans text-sm font-medium tracking-wide text-charcoal transition-colors hover:bg-champagne"
           >
-            Shop New Collection
+            {primaryLabel}
           </Link>
           <Link
-            href="/collections/best-sellers"
+            href={secondaryLink}
             className="inline-flex min-h-12 items-center justify-center border border-ivory/70 px-7 py-3.5 font-sans text-sm font-medium tracking-wide text-ivory transition-colors hover:bg-ivory hover:text-charcoal"
           >
-            Explore Best Sellers
+            {secondaryLabel}
           </Link>
         </motion.div>
       </motion.div>

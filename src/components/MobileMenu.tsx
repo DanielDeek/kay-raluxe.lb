@@ -70,7 +70,7 @@ export default function MobileMenu({ open, onClose, links }: MobileMenuProps) {
           aria-label="Main menu"
         >
           <div className="container flex h-16 items-center justify-between sm:h-20">
-            <span className="font-display text-xl tracking-[0.18em]">KAY RALUXE</span>
+            <span className="font-display text-xl tracking-[0.18em]">LUXE AVENUE</span>
             <button ref={closeRef} type="button" onClick={onClose} aria-label="Close menu" className="flex h-11 w-11 items-center justify-center">
               <X className="h-6 w-6" />
             </button>

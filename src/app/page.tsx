@@ -12,7 +12,7 @@ import { getBestSellerProducts, getNewArrivals } from "@/lib/data/products";
 export const metadata: Metadata = {
   title: "Home",
   alternates: { canonical: "/" },
-  description: "Kay Raluxe — curated fashion for every version of you.",
+  description: "Luxe Avenue — curated fashion for every version of you.",
 };
 
 export default function HomePage() {

@@ -7,7 +7,7 @@ import { editorialImage } from "@/lib/data/images";
 export const metadata: Metadata = {
   title: "Collections",
   alternates: { canonical: "/collections" },
-  description: "Explore Kay Raluxe collections â€” New Arrivals, Dresses, Sets, Summer and more.",
+  description: "Explore Luxe Avenue collections â€” New Arrivals, Dresses, Sets, Summer and more.",
 };
 
 export default function CollectionsPage() {
@@ -18,7 +18,8 @@ export default function CollectionsPage() {
         title="Collections, curated."
         description="Find the edit that fits the moment, from new arrivals to easy summer layers."
         image={editorialImage("kr-page-collections", 1100, 1000, 6)}
-        imageAlt="Kay Raluxe curated fashion collection"
+        imageAlt="Luxe Avenue curated fashion collection"
+        contentPrefix="page_collections"
       />
 
       <section className="container grid grid-cols-1 gap-4 py-16 sm:grid-cols-2 md:py-20 lg:grid-cols-3 lg:py-24">

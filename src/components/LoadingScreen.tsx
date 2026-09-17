@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-const LETTERS = "KAY RALUXE".split("");
+const LETTERS = "LUXE AVENUE".split("");
 
 export default function LoadingScreen() {
   const [visible, setVisible] = useState(true);

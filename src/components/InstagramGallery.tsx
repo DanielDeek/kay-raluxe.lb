@@ -34,12 +34,12 @@ export default function InstagramGallery() {
                 href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`View Kay Raluxe look ${i + 1} on Instagram`}
+                aria-label={`View Luxe Avenue look ${i + 1} on Instagram`}
                 className="group absolute inset-0 block"
               >
                 <Image
                   src={src}
-                  alt={`Kay Raluxe fashion look ${i + 1}`}
+                  alt={`Luxe Avenue fashion look ${i + 1}`}
                   fill
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
                   quality={70}

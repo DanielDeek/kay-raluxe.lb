@@ -1,0 +1,11 @@
+<div class="form-grid">
+    <div class="field"><label for="title">Collection title</label><input id="title" name="title" value="{{ old('title', $collection->title) }}" required></div>
+    <div class="field"><label for="slug">Slug <span class="field-hint">Optional, generated from title</span></label><input id="slug" name="slug" value="{{ old('slug', $collection->slug) }}"></div>
+    <div class="field full"><label for="subtitle">Subtitle</label><input id="subtitle" name="subtitle" value="{{ old('subtitle', $collection->subtitle) }}" required></div>
+    <div class="field full"><label for="description">Description</label><textarea id="description" name="description">{{ old('description', $collection->description) }}</textarea></div>
+    <div class="field"><label for="category">Product category filter</label><select id="category" name="category"><option value="">All products</option>@foreach (['dresses','tops','sets','bottoms','summer','sale'] as $category)<option value="{{ $category }}" @selected(old('category', $collection->category) === $category)>{{ ucfirst($category) }}</option>@endforeach</select></div>
+    <div class="field"><label for="sort_order">Sort order</label><input id="sort_order" name="sort_order" type="number" min="0" value="{{ old('sort_order', $collection->sort_order ?? 0) }}"></div>
+    <div class="field full"><label for="image_upload">Hero image</label><input id="image_upload" name="image_upload" type="file" accept="image/jpeg,image/png,image/webp,image/avif">@if ($collection->image)<img class="admin-image-preview" src="{{ $collection->image }}" alt="Current collection hero image"><label class="content-clear"><input name="image_clear" type="checkbox" value="1"> Use no custom image</label>@endif<span class="field-hint">Upload a JPG, PNG, WEBP, or AVIF image, up to 5 MB.</span></div>
+    <div class="field full"><label class="check-card"><input type="checkbox" name="active" value="1" @checked(old('active', $collection->exists ? $collection->active : true))> Publish this collection on the storefront</label></div>
+</div>
+<div class="form-actions"><a href="{{ route('admin.collections.index') }}" class="button button-light">Cancel</a><button type="submit" class="button button-dark">{{ $collection->exists ? 'Save changes' : 'Create collection' }} <span>↗</span></button></div>

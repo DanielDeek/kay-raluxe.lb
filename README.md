@@ -1,6 +1,6 @@
-# Kay Raluxe — Fashion Boutique Website
+# Luxe Avenue — Fashion Boutique Website
 
-A premium, editorial, frontend-only fashion e-commerce website for **Kay Raluxe**, built with Next.js (App Router), TypeScript, and Tailwind CSS. Checkout happens entirely through WhatsApp — there is no backend, database, authentication, or payment gateway.
+A premium, editorial, frontend-only fashion e-commerce website for **Luxe Avenue**, built with Next.js (App Router), TypeScript, and Tailwind CSS. Checkout happens entirely through WhatsApp — there is no backend, database, authentication, or payment gateway.
 
 ## Tech stack
 
@@ -85,7 +85,7 @@ All store-wide settings live in `src/lib/config.ts`:
 
 ## Important note on demo data
 
-The 14 products in `src/lib/data/products.ts` are **placeholder data** — invented names, prices, sizes, and stock status for development purposes only, with generic stock-photo placeholders standing in for real product photography. None of this reflects real Kay Raluxe inventory. Replace every field with verified store data (and official photography) before launch. This is called out in a comment at the top of that file as well.
+The 14 products in `src/lib/data/products.ts` are **placeholder data** — invented names, prices, sizes, and stock status for development purposes only, with generic stock-photo placeholders standing in for real product photography. None of this reflects real Luxe Avenue inventory. Replace every field with verified store data (and official photography) before launch. This is called out in a comment at the top of that file as well.
 
 Likewise, the About page intentionally avoids inventing founding dates, physical locations, or unverifiable claims — add real details there once available.
 
@@ -97,7 +97,7 @@ Ordering is disabled on the product page until both a size and a color are selec
 
 ## Key features
 
-- Animated "KAY RALUXE" loading screen (shown once per session)
+- Animated "LUXE AVENUE" loading screen (shown once per session)
 - Transparent-to-solid header on scroll, animated fullscreen mobile menu
 - Cinematic hero with parallax + scroll-linked fade
 - Client-side shop filtering (category, size, color, sort, search, new/sale toggles, active-filter chips, mobile filter drawer, grid/list view, empty state)
@@ -112,3 +112,7 @@ Ordering is disabled on the product page until both a size and a color are selec
 - No backend, database, authentication, CMS, or payment gateway — this is a fully static, frontend-only project.
 - The contact form validates in the browser; connect it to a form service when inbound email handling is needed.
 - Product/catalog data is static TypeScript, not a live inventory system.
+
+## Admin dashboard
+
+The Laravel 12 admin application lives in `admin/`. Create the `kay_raluxe_admin` MySQL database in phpMyAdmin, then run `cd admin`, `composer install`, `php artisan migrate:fresh --seed`, and `php artisan serve --port=8001` to open the protected back office at `http://127.0.0.1:8001/login`. It manages products, collections, WhatsApp orders, customers, and store settings, and exposes catalogue, order, and customer authentication APIs for storefront integration. For a deployed storefront, set `NEXT_PUBLIC_ADMIN_API_URL` to the public Laravel API base URL ending in `/api`.

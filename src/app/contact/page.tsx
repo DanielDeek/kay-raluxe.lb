@@ -23,7 +23,7 @@ import {
 export const metadata: Metadata = {
   title: "Contact",
   alternates: { canonical: "/contact" },
-  description: "Get in touch with Kay Raluxe via WhatsApp, Instagram, or our contact form.",
+  description: "Get in touch with Luxe Avenue via WhatsApp, Instagram, or our contact form.",
 };
 
 const FAQ_ITEMS = [
@@ -61,7 +61,8 @@ export default function ContactPage() {
         title="We'd love to hear from you."
         description="For styling questions, delivery details, or help choosing your size, our fastest reply is on WhatsApp."
         image={editorialImage("kr-page-contact", 1100, 1000, 8)}
-        imageAlt="Kay Raluxe fashion detail"
+        imageAlt="Luxe Avenue fashion detail"
+        contentPrefix="page_contact"
       />
 
       <section className="container grid grid-cols-1 gap-14 py-16 md:py-20 lg:grid-cols-2 lg:gap-20 lg:py-24">

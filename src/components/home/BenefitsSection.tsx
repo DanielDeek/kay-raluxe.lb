@@ -17,7 +17,7 @@ export default function BenefitsSection() {
         <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-16">
           <div>
             <SectionHeading
-              eyebrow="The Kay Raluxe way"
+              eyebrow="The Luxe Avenue way"
               title="A little more considered."
               description="Shopping should feel personal, clear, and easy from first look to final order."
             />

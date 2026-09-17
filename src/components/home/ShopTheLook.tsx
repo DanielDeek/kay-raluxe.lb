@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
@@ -5,10 +7,13 @@ import { editorialImage } from "@/lib/data/images";
 import { products } from "@/lib/data/products";
 import { Product } from "@/types";
 import { formatPrice, displayPrice } from "@/lib/utils";
+import { useSiteContent } from "@/context/SiteContentContext";
 
 const LOOK_SLUGS = ["noor-tailored-blazer", "camille-silk-cami", "isla-wide-trouser"];
 
 export default function ShopTheLook() {
+  const { getContent } = useSiteContent();
+  const image = getContent("home_look_image", editorialImage("kr-shop-the-look", 1200, 1500, 3));
   const lookProducts = LOOK_SLUGS
     .map((slug) => products.find((product) => product.slug === slug))
     .filter((product): product is Product => Boolean(product));
@@ -18,22 +23,20 @@ export default function ShopTheLook() {
       <div className="container">
         <div data-gsap-reveal className="mb-8 flex items-end justify-between gap-6 md:mb-10">
           <div>
-            <span className="font-sans text-xs font-semibold uppercase tracking-[0.25em] text-mutedBrown">Styled together</span>
-            <h2 className="mt-3 font-display text-4xl leading-none text-charcoal sm:text-5xl">Shop the look</h2>
+            <span className="font-sans text-xs font-semibold uppercase tracking-[0.25em] text-mutedBrown">{getContent("home_look_eyebrow", "Styled together")}</span>
+            <h2 className="mt-3 font-display text-4xl leading-none text-charcoal sm:text-5xl">{getContent("home_look_title", "Shop the look")}</h2>
           </div>
           <p className="hidden max-w-xs pb-1 text-right font-sans text-sm leading-relaxed text-charcoal/60 sm:block">
-            One outfit, three pieces, plenty of ways to make it yours.
+            {getContent("home_look_description", "One outfit, three pieces, plenty of ways to make it yours.")}
           </p>
         </div>
         <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
           <div data-gsap-reveal className="relative aspect-[4/5] overflow-hidden bg-beige sm:aspect-[5/4] lg:aspect-[4/5]">
-            <Image
-              src={editorialImage("kr-shop-the-look", 1200, 1500, 3)}
-              alt="Model wearing a layered Kay Raluxe outfit"
-              fill
-              sizes="(max-width: 1023px) 100vw, 55vw"
-              quality={75}
-              className="object-cover object-[center_32%]"
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={image}
+              alt="Model wearing a layered Luxe Avenue outfit"
+              className="absolute inset-0 h-full w-full object-cover object-[center_32%]"
             />
           </div>
           <div data-gsap-reveal className="flex flex-col justify-center">
